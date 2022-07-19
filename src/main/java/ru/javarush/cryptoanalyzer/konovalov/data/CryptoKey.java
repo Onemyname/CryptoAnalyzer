@@ -2,6 +2,8 @@ package ru.javarush.cryptoanalyzer.konovalov.data;
 
 import ru.javarush.cryptoanalyzer.konovalov.exception.WrongValueOfCryptoKeyException;
 
+import static ru.javarush.cryptoanalyzer.konovalov.data.CryptAlphabetArray.getCryptAlphabetArrayLength;
+
 public class CryptoKey {
 
 
@@ -21,7 +23,7 @@ public class CryptoKey {
     }
 
     public static void setCryptKey(int key) throws WrongValueOfCryptoKeyException {
-        if (key > 0 && key <= 100) {
+        if (key > 0 && key <= getCryptAlphabetArrayLength()-1) {
             setCorrectCryptKey(true);
             cryptKey = key;
         } else {
