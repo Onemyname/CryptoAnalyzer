@@ -4,8 +4,8 @@ import static ru.javarush.cryptoanalyzer.konovalov.data.Alphabet.*;
 
 public class CryptAlphabetArray {
 
-    private static final String ALL_ALPHABET = NUMBERS.toString() + RUSSIAN_LETTERS +
-            RUSSIAN_LETTERS.toString().toLowerCase() + SYMBOLS;
+    private static final String ALL_ALPHABET = NUMBERS.toString() + ENGLISH_LETTERS +
+            ENGLISH_LETTERS.toString().toLowerCase() + SYMBOLS;
 
     private static final char[] CRYPT_ALPHABET_ARRAY = ALL_ALPHABET.toCharArray();
 
