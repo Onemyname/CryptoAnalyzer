@@ -3,7 +3,7 @@ package ru.javarush.cryptoanalyzer.konovalov.data;
 public enum Alphabet {
     NUMBERS("0123456789"),
 
-    RUSSIAN_LETTERS("юабцде╗фгхийклмнопярстужвьызшэщчъ"),
+    RUSSIAN_LETTERS("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
     SYMBOLS(",.!?");
 
     private final String title;

@@ -9,7 +9,7 @@ public class UserRegisterService {
     private static boolean isValidUsername(String userName) {
 
         // Regex to check valid username.
-        String regex = "(?<=\\s|^)[à-ÿÀ-ß¸¨a-zA-Z][à-ÿÀ-ß¸¨a-z A-Z]*[à-ÿÀ-ß¸¨a-zA-Z]*(?=[.,;:]?\\s|$)";
+        String regex = "(?<=\\s|^)[a-zA-Z][a-z A-Z]*[a-zA-Z]*(?=[.,;:]?\\s|$)";
 
         // Compile the ReGex
         Pattern p = Pattern.compile(regex);

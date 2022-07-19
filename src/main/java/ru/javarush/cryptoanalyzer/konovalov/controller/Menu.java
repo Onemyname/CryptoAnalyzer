@@ -1,7 +1,7 @@
 package ru.javarush.cryptoanalyzer.konovalov.controller;
 
 public enum Menu {
-    WELCOME_STRING("Welcome to the Crypt-analyser \"Onemyname\".\nTo use this program you have to register." +
+    WELCOME_STRING("Welcome to the ENGLISH-Crypt-analyser \"Onemyname\".\nTo use this program you have to register." +
             "\nEnter your real name (example - Ivan Ivanov or Ivan):"),
     SELECT_OPERATION_MODES("Select the operating mode:\n0 - Caesar encryption\n1 - Caesar Decryption" +
             "\n2 - Brute Force decryption\n3 - Decryption method of statistical analysis\n4 - Close the program"),
