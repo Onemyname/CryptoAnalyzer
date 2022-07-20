@@ -1,9 +1,11 @@
-package ru.javarush.cryptoanalyzer.konovalov.strategy;
+package ru.javarush.cryptoanalyzer.konovalov.strategy.CaesarMethod;
 
 /*
 (Brute Force)
  */
 
+
+import ru.javarush.cryptoanalyzer.konovalov.strategy.Actionable;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

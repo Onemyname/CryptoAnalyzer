@@ -1,7 +1,9 @@
 package ru.javarush.cryptoanalyzer.konovalov.strategy;
 
+import ru.javarush.cryptoanalyzer.konovalov.strategy.CaesarMethod.BruteForceDecoder;
 import ru.javarush.cryptoanalyzer.konovalov.strategy.CaesarMethod.CaesarDecoder;
 import ru.javarush.cryptoanalyzer.konovalov.strategy.CaesarMethod.CaesarEncoder;
+import ru.javarush.cryptoanalyzer.konovalov.strategy.statisticalanalyze.StatAnalyzeDecoder;
 
 import java.io.IOException;
 
