@@ -47,12 +47,7 @@ public class BruteForceDecoder implements Actionable {
         char cryptValue;
         for (int key = 1; key <= 50; key++) {    //for each possible key
             for (int i = 0; i < alphabet.length; i++) { // we change every symbol
-                if (i - key < 0){
-                    cryptValue = alphabet[alphabet.length - (key - i)];
-                } else {
-                    cryptValue = alphabet[i-key];
-                }
-                //cryptValue = i - key < 0 ? alphabet[alphabet.length - (key - i)] : alphabet[i - key]; //same as in CaesarDecoding
+                cryptValue = i - key < 0 ? alphabet[alphabet.length - (key - i)] : alphabet[i - key]; //same as in CaesarDecoding
                 map.put(alphabet[i], cryptValue);
             }
             List<StringBuilder> toCheck = decodeLine(encryptedLine, map);
@@ -60,10 +55,22 @@ public class BruteForceDecoder implements Actionable {
             for(StringBuilder sb : toCheck){
                 stringsToCheck.add(sb.toString());
             }
-            if (stringsToCheck.stream().anyMatch(exampleArrayList::contains)) { //ya eto zaguglil
-                println("Key is found! It's " + key);
-                writeResult(resultFile, stringsToCheck);
-                return;
+            if (stringsToCheck.stream().anyMatch(exampleArrayList::contains)) { //comparing decoded list to example list
+                int countMatches = 0;
+                int needMatches = 1;
+                if (stringsToCheck.size() > 100) {
+                    needMatches = stringsToCheck.size()/100;
+                }
+                for (String s : stringsToCheck) { //if there is any match - check for others
+                    if(exampleArrayList.contains(s)) {
+                        countMatches++;
+                    }
+                    if (countMatches >= needMatches) {
+                        println("Key is found! It's " + key);
+                        writeResult(resultFile, stringsToCheck);
+                        return;
+                    }
+                }
             }
         }
     }
