@@ -49,12 +49,7 @@ public class BruteForceDecoder implements Actionable {
         char cryptValue;
         for (int key = 1; key <= 50; key++) {    //for each possible key
             for (int i = 0; i < alphabet.length; i++) { // we change every symbol
-                if (i - key < 0){
-                    cryptValue = alphabet[alphabet.length - (key - i)];
-                } else {
-                    cryptValue = alphabet[i-key];
-                }
-                //cryptValue = i - key < 0 ? alphabet[alphabet.length - (key - i)] : alphabet[i - key]; //same as in CaesarDecoding
+                cryptValue = i - key < 0 ? alphabet[alphabet.length - (key - i)] : alphabet[i - key]; //same as in CaesarDecoding
                 map.put(alphabet[i], cryptValue);
             }
             List<StringBuilder> toCheck = decodeLine(encryptedLine, map);
@@ -95,7 +90,6 @@ public class BruteForceDecoder implements Actionable {
             newWord = new StringBuilder();
         }
         return encodedLine;
-        //return
     }
     static void writeResult(String resultFile, List<String> toCheck){
         try(BufferedWriter writer = getWriter(getRoot() + resultFile)){
