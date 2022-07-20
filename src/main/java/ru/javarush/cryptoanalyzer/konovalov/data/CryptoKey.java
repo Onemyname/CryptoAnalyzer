@@ -27,7 +27,7 @@ public class CryptoKey {
             setCorrectCryptKey(true);
             cryptKey = key;
         } else {
-            throw new WrongValueOfCryptoKeyException("You have entered a non-correct value(value from 1 to 100)");
+            throw new WrongValueOfCryptoKeyException("You have entered a non-correct value");
         }
     }
 }

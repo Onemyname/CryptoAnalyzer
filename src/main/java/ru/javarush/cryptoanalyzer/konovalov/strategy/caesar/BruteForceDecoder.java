@@ -1,11 +1,11 @@
-package ru.javarush.cryptoanalyzer.konovalov.strategy.CaesarMethod;
+package ru.javarush.cryptoanalyzer.konovalov.strategy.caesar;
 
 /*
 (Brute Force)
  */
 
 
-import ru.javarush.cryptoanalyzer.konovalov.strategy.Actionable;
+import ru.javarush.cryptoanalyzer.konovalov.strategy.CryptoStrategy;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -19,8 +19,8 @@ import static ru.javarush.cryptoanalyzer.konovalov.io.Reader.getReader;
 import static ru.javarush.cryptoanalyzer.konovalov.util.PathFinder.getRoot;
 import static ru.javarush.cryptoanalyzer.konovalov.io.Writer.getWriter;
 
-public class BruteForceDecoder implements Actionable {
-    public void action(String[] parameters) { //{ encryptedFile.txt, resultFile.txt, example.txt}
+public class BruteForceDecoder implements CryptoStrategy {
+    public void codingInformation(String[] parameters) { //{ encryptedFile.txt, resultFile.txt, example.txt}
         println("Brute force decryption attempt");
         String[] encryptedLine = readFile(parameters[0]);
         String[] exampleLine = readFile(parameters[2]); //set of language key words like he she it and but the etc
@@ -36,40 +36,44 @@ public class BruteForceDecoder implements Actionable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String[] splitedLine = sb.toString().split(" ");
-        return splitedLine;
+        return sb.toString().split(" ");
     }
     static void bruteForceLine(String[] encryptedLine, String[] exampleLine, String resultFile) {
-        List<String> exampleArrayList = new ArrayList<>();
-        for (String s : exampleLine) {
-            exampleArrayList.add(s);
-        }
-        char[] alphabet = getCryptArrayAlphabet();
+        List<String> exampleArrayList = new ArrayList<>(Arrays.asList(exampleLine));
         HashMap<Character, Character> map = new HashMap<>(getCryptAlphabetArrayLength());
+        char[] alphabet = getCryptArrayAlphabet();
         char cryptValue;
-        for (int key = 1; key <= 50; key++) {    //for each possible key
+
+        for (int key = 1; key <= getCryptAlphabetArrayLength()-1; key++) {    //for each possible key
             for (int i = 0; i < alphabet.length; i++) { // we change every symbol
                 cryptValue = i - key < 0 ? alphabet[alphabet.length - (key - i)] : alphabet[i - key]; //same as in CaesarDecoding
                 map.put(alphabet[i], cryptValue);
             }
             List<StringBuilder> toCheck = decodeLine(encryptedLine, map);
             List<String> stringsToCheck = new ArrayList<>();
+
             for(StringBuilder sb : toCheck){
                 stringsToCheck.add(sb.toString());
             }
             if (stringsToCheck.stream().anyMatch(exampleArrayList::contains)) { //comparing decoded list to example list
                 int countMatches = 0;
                 int needMatches = 1;
-                if (stringsToCheck.size() > 100) {
-                    needMatches = stringsToCheck.size()/100;
+                int totalCharacters = 100;
+
+                if (stringsToCheck.size() > totalCharacters) {
+                    needMatches = stringsToCheck.size() / totalCharacters;
                 }
-                for (String s : stringsToCheck) { //if there is any match - check for others
+
+                for (String s : stringsToCheck) {
+                    //if there is any match - check for others
                     if(exampleArrayList.contains(s)) {
                         countMatches++;
                     }
+
                     if (countMatches >= needMatches) {
                         println("Key is found! It's " + key);
                         writeResult(resultFile, stringsToCheck);
+
                         return;
                     }
                 }
@@ -80,6 +84,7 @@ public class BruteForceDecoder implements Actionable {
         StringBuilder newWord = new StringBuilder();
         List<StringBuilder> encodedLine = new ArrayList<>();
         Character newSymbol;
+
         for (String encodedWord : encryptedLinesArray) {
             for (int j = 0; j < encodedWord.length(); j++) {
                 char symbol = encodedWord.charAt(j);
@@ -89,6 +94,7 @@ public class BruteForceDecoder implements Actionable {
             encodedLine.add(newWord);
             newWord = new StringBuilder();
         }
+
         return encodedLine;
     }
     static void writeResult(String resultFile, List<String> toCheck){

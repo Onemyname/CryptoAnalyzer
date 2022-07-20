@@ -36,7 +36,7 @@ public class MainController {
         System.out.println("Welcome, " + User.getUserName() + "!");
     }
 
-    public static void execute(int command, String[] parameters) throws IOException {
+    public  void execute(int command, String[] parameters) throws IOException {
         switch (command) {
             case 0 -> runCaesarEncoder(parameters);
             case 1 -> runCaesarDecoder(parameters);
@@ -72,21 +72,22 @@ public class MainController {
 
     public static int selectKey() {
         println(SELECT_CRYPT_KEY);
+
         do {
             try {
                 setCryptKey(readIntFromConsole());
             } catch (WrongValueOfCryptoKeyException e) {
                 println(e.getMessage());
             } catch (InputMismatchException e) {
-                println(COMMAND_MUST_BE_NUMERIC + "(value from 1 to 100)");
+                println(COMMAND_MUST_BE_NUMERIC);
             }
         }
         while (!isCorrectCryptKey());
+
         return getCryptKey();
     }
 
     public static String selectFile() {
-        String filename;
         do {
             try {
                 checkExistenceOfFile(readLineFromConsole());
@@ -96,6 +97,7 @@ public class MainController {
         }
         while (!isFileExist());
         setFileExist(false);
+
         return getFileName();
     }
 

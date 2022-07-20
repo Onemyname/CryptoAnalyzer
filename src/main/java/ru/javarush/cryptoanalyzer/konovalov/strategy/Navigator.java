@@ -1,43 +1,41 @@
 package ru.javarush.cryptoanalyzer.konovalov.strategy;
 
-import ru.javarush.cryptoanalyzer.konovalov.strategy.CaesarMethod.BruteForceDecoder;
-import ru.javarush.cryptoanalyzer.konovalov.strategy.CaesarMethod.CaesarDecoder;
-import ru.javarush.cryptoanalyzer.konovalov.strategy.CaesarMethod.CaesarEncoder;
+import ru.javarush.cryptoanalyzer.konovalov.strategy.caesar.BruteForceDecoder;
+import ru.javarush.cryptoanalyzer.konovalov.strategy.caesar.CaesarDecoder;
+import ru.javarush.cryptoanalyzer.konovalov.strategy.caesar.CaesarEncoder;
 import ru.javarush.cryptoanalyzer.konovalov.strategy.statisticalanalyze.StatAnalyzeDecoder;
 
 import java.io.IOException;
 
 public class Navigator {
-
-    private Actionable actionable;
-
-    public Navigator(Actionable actionable) {
-        this.actionable = actionable;
-    }
-
-    public void action(String[] args) throws IOException {
-            actionable.action(args);
-    }
-
     private static Navigator navigator = null;
+    private final CryptoStrategy strategy;
+
+    public Navigator(CryptoStrategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public void codingInformation(String[] parameters) throws IOException {
+        strategy.codingInformation(parameters);
+    }
 
     public static void runCaesarEncoder(String[] parameters) throws IOException {
         navigator = new Navigator(new CaesarEncoder());
-        navigator.action(parameters);                                           //encode with Caesar method
+        navigator.codingInformation(parameters);                                           //encode with Caesar method
     }
 
-    public static void runCaesarDecoder(String[] args) throws IOException {
+    public static void runCaesarDecoder(String[] parameters) throws IOException {
         navigator = new Navigator(new CaesarDecoder());
-        navigator.action(args);                                                 //decode with Caesar method
+        navigator.codingInformation(parameters);                                                 //decode with Caesar method
     }
 
-    public static void runBruteForceDecoder(String[] args)throws IOException {
+    public static void runBruteForceDecoder(String[] parameters) throws IOException {
         navigator = new Navigator(new BruteForceDecoder());
-        navigator.action(args);                                                 //decode with founding Caesar key
+        navigator.codingInformation(parameters);                                                 //decode with founding Caesar key
     }
 
-    public static void runStatisticalAnalysisDecoder(String[] args) throws IOException{
+    public static void runStatisticalAnalysisDecoder(String[] parameters) throws IOException {
         navigator = new Navigator(new StatAnalyzeDecoder());
-        navigator.action(args);                                                 //decode using statistic of characters
+        navigator.codingInformation(parameters);                                                 //decode using statistic of characters
     }
 }

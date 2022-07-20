@@ -81,12 +81,12 @@ public class StatCharacterAnalyzer {
         Map<Character, Double> sortedEncryptedMap = sortMap(encryptedMap, false);
         Map<Character, Double> sortedExampleMap = sortMap(exampleMap, false);
 
-        return сompareKeysByPercentageValues(sortedEncryptedMap, sortedExampleMap);
+        return compareMaps(sortedEncryptedMap, sortedExampleMap);
     }
 
-private static Map<Character, Double> sortMap(Map<Character, Double> unsortMap, final boolean order)
+private static Map<Character, Double> sortMap(Map<Character, Double> unsortedMap, boolean order)
     {
-        List<Map.Entry<Character, Double>> list = new LinkedList<>(unsortMap.entrySet());
+        List<Map.Entry<Character, Double>> list = new LinkedList<>(unsortedMap.entrySet());
 
         // Sorting the list based on values
         list.sort((o1, o2) -> order ? o1.getValue().compareTo(o2.getValue()) == 0
@@ -94,11 +94,12 @@ private static Map<Character, Double> sortMap(Map<Character, Double> unsortMap, 
                 : o1.getValue().compareTo(o2.getValue()) : o2.getValue().compareTo(o1.getValue()) == 0
                 ? o2.getKey().compareTo(o1.getKey())
                 : o2.getValue().compareTo(o1.getValue()));
+
         return list.stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> b, LinkedHashMap::new));
 
     }
-    private static HashMap<Character, Character> сompareKeysByPercentageValues(Map<Character, Double> sortedEncryptedMap,
-                                                                               Map<Character, Double> sortedExampleMap) {
+    private static HashMap<Character, Character> compareMaps(Map<Character, Double> sortedEncryptedMap,
+                                                             Map<Character, Double> sortedExampleMap) {
 
         HashMap<Character, Character> resultMap = new HashMap<>();
         Iterator<Map.Entry<Character, Double>> itr = sortedEncryptedMap.entrySet().iterator();

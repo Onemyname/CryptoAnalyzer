@@ -1,4 +1,4 @@
-package ru.javarush.cryptoanalyzer.konovalov.strategy.CaesarMethod;
+package ru.javarush.cryptoanalyzer.konovalov.strategy.caesar;
 
 import java.io.*;
 import java.util.ArrayList;
