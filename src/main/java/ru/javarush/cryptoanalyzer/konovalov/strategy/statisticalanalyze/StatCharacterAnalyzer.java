@@ -31,7 +31,6 @@ public class StatCharacterAnalyzer {
 
         mapPercentageOfCharactersInExampleFile = getMapPercentageCharactersStatistic(exampleText);
 
-
         HashMap<Character, Character> mapForDecodeEncryptedText = createMapForDecodeEncryptedText(mapPercentageOfCharactersInEncryptedFile, mapPercentageOfCharactersInExampleFile);
 
         return mapForDecodeEncryptedText;

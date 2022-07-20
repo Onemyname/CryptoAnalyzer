@@ -13,16 +13,13 @@ public class CryptAlphabetArray {
     private static final String ALL_ALPHABET = NUMBERS.toString() + ENGLISH_LETTERS +
             ENGLISH_LETTERS.toString().toLowerCase() + SYMBOLS;
 
-    private static final String ALPHABET_WITHOUT_CIPHERS = ENGLISH_LETTERS +
-            ENGLISH_LETTERS.toString().toLowerCase() + SYMBOLS;
-
     private static final char[] CRYPT_ALPHABET_ARRAY = ALL_ALPHABET.toCharArray();
 
     public static List<Character> getAlphabetList() {
         return alphabetList;
     }
 
-    private static List<Character> alphabetList = ALPHABET_WITHOUT_CIPHERS.chars().mapToObj(c -> (char) c).toList();
+    private static List<Character> alphabetList = ALL_ALPHABET.chars().mapToObj(c -> (char) c).toList();
 
     public static char[] getCryptArrayAlphabet() {
         return CRYPT_ALPHABET_ARRAY;
