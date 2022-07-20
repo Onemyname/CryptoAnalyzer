@@ -60,10 +60,22 @@ public class BruteForceDecoder implements Actionable {
             for(StringBuilder sb : toCheck){
                 stringsToCheck.add(sb.toString());
             }
-            if (stringsToCheck.stream().anyMatch(exampleArrayList::contains)) { //ya eto zaguglil
-                println("Key is found! It's " + key);
-                writeResult(resultFile, stringsToCheck);
-                return;
+            if (stringsToCheck.stream().anyMatch(exampleArrayList::contains)) { //comparing decoded list to example list
+                int countMatches = 0;
+                int needMatches = 1;
+                if (stringsToCheck.size() > 100) {
+                    needMatches = stringsToCheck.size()/100;
+                }
+                for (String s : stringsToCheck) { //if there is any match - check for others
+                    if(exampleArrayList.contains(s)) {
+                        countMatches++;
+                    }
+                    if (countMatches >= needMatches) {
+                        println("Key is found! It's " + key);
+                        writeResult(resultFile, stringsToCheck);
+                        return;
+                    }
+                }
             }
         }
     }
