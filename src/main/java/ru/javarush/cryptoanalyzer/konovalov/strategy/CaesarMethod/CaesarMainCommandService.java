@@ -4,8 +4,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static ru.javarush.cryptoanalyzer.konovalov.reader.Reader.getReader;
-import static ru.javarush.cryptoanalyzer.konovalov.writer.Writer.getWriter;
+import static ru.javarush.cryptoanalyzer.konovalov.io.Reader.getReader;
+import static ru.javarush.cryptoanalyzer.konovalov.io.Writer.getWriter;
 import static ru.javarush.cryptoanalyzer.konovalov.data.CryptAlphabetArray.getCryptAlphabetArrayLength;
 import static ru.javarush.cryptoanalyzer.konovalov.data.CryptAlphabetArray.getCryptArrayAlphabet;
 import static ru.javarush.cryptoanalyzer.konovalov.util.PathFinder.getRoot;
@@ -36,12 +36,12 @@ public class CaesarMainCommandService {
         try (BufferedReader reader = getReader(getRoot() + fileToEncrypt);
              BufferedWriter writer = getWriter(getRoot() + resultFile))
         {
-            String currentLine = reader.readLine();
+            String currentLine = reader.readLine().toLowerCase();
             while (currentLine != null) {
                 String cryptoLine = encodeOrDecodeLine(currentLine, cryptMap);
                 writer.write(cryptoLine);
                 writer.append('\n');
-                currentLine = reader.readLine();
+                currentLine = reader.readLine() != null ? reader.readLine().toLowerCase() : null;
             }
         } catch (IOException e) {
             e.printStackTrace();

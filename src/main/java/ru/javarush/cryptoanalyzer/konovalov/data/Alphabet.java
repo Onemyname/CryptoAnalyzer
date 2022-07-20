@@ -1,10 +1,8 @@
 package ru.javarush.cryptoanalyzer.konovalov.data;
 
 public enum Alphabet {
-    NUMBERS("0123456789"),
 
-    ENGLISH_LETTERS("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
-    SYMBOLS(",.!?");
+    ENGLISH_LETTERS("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
     private final String title;
 

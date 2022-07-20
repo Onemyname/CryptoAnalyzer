@@ -16,7 +16,7 @@ import ru.javarush.cryptoanalyzer.konovalov.controller.MainController;
 
 import java.io.IOException;
 
-import static ru.javarush.cryptoanalyzer.konovalov.printer.Printable.println;
+import static ru.javarush.cryptoanalyzer.konovalov.io.Printable.println;
 
 public class Runner {
     public static void main(String[] args) {

@@ -6,7 +6,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import static ru.javarush.cryptoanalyzer.konovalov.printer.Printable.println;
+import static ru.javarush.cryptoanalyzer.konovalov.io.Printable.println;
 
 public class PathFinder {
     public static boolean isFileExist() {

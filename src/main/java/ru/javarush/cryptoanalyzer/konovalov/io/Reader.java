@@ -1,4 +1,4 @@
-package ru.javarush.cryptoanalyzer.konovalov.reader;
+package ru.javarush.cryptoanalyzer.konovalov.io;
 
 import java.io.*;
 

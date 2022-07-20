@@ -14,12 +14,12 @@ import static ru.javarush.cryptoanalyzer.konovalov.controller.Commands.*;
 import static ru.javarush.cryptoanalyzer.konovalov.controller.Menu.*;
 import static ru.javarush.cryptoanalyzer.konovalov.controller.RegisterCommandService.*;
 import static ru.javarush.cryptoanalyzer.konovalov.data.CryptoKey.*;
+import static ru.javarush.cryptoanalyzer.konovalov.io.Printable.println;
 import static ru.javarush.cryptoanalyzer.konovalov.registeruser.UserRegisterService.enterCorrectUserName;
+import static ru.javarush.cryptoanalyzer.konovalov.io.Scannerable.readIntFromConsole;
+import static ru.javarush.cryptoanalyzer.konovalov.io.Scannerable.readLineFromConsole;
 import static ru.javarush.cryptoanalyzer.konovalov.strategy.Navigator.*;
 import static ru.javarush.cryptoanalyzer.konovalov.util.PathFinder.*;
-import static ru.javarush.cryptoanalyzer.konovalov.printer.Printable.println;
-import static ru.javarush.cryptoanalyzer.konovalov.scanner.Scannerable.readIntFromConsole;
-import static ru.javarush.cryptoanalyzer.konovalov.scanner.Scannerable.readLineFromConsole;
 
 public class MainController {
 
@@ -38,21 +38,11 @@ public class MainController {
 
     public static void execute(int command, String[] parameters) throws IOException {
         switch (command) {
-            case 0:
-                runCaesarEncoder(parameters);
-                break;
-            case 1:
-                runCaesarDecoder(parameters);
-                break;
-            case 2:
-                runBruteForceDecoder(parameters);
-                break;
-            case 3:
-                runStatisticalAnalysisDecoder(parameters);
-                break;
-            case 4:
-                handleExit();
-
+            case 0 -> runCaesarEncoder(parameters);
+            case 1 -> runCaesarDecoder(parameters);
+            case 2 -> runBruteForceDecoder(parameters);
+            case 3 -> runStatisticalAnalysisDecoder(parameters);
+            case 4 -> handleExit();
         }
     }
 
@@ -68,23 +58,15 @@ public class MainController {
             }
         }
         while (!isStatusCommand());
-        if (getChosenCommand() == 4) {
-            handleExit();
-        } else {
-            switch (getChosenCommand()) {
-                case 0:
-                    println(CAESAR_ENCODER.toString());
-                    break;
-                case 1:
-                    println(CAESAR_DECODER.toString());
-                    break;
-                case 2:
-                    println(BRUTE_FORCE_DECODER.toString());
-                    break;
-                case 3:
-                    println(STATISTICAL_ANALYSIS_DECODER.toString());
-            }
+
+        switch (getChosenCommand()) {
+            case 0 -> println(CAESAR_ENCODER.toString());
+            case 1 -> println(CAESAR_DECODER.toString());
+            case 2 -> println(BRUTE_FORCE_DECODER.toString());
+            case 3 -> println(STATISTICAL_ANALYSIS_DECODER.toString());
+            case 4 -> handleExit();
         }
+
         return getChosenCommand();
     }
 
@@ -106,7 +88,6 @@ public class MainController {
     public static String selectFile() {
         String filename;
         do {
-
             try {
                 checkExistenceOfFile(readLineFromConsole());
             } catch (EnteredFileNotExistException e) {

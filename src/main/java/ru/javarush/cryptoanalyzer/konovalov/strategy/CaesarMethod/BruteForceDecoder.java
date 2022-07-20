@@ -14,10 +14,10 @@ import java.util.*;
 
 import static ru.javarush.cryptoanalyzer.konovalov.data.CryptAlphabetArray.getCryptAlphabetArrayLength;
 import static ru.javarush.cryptoanalyzer.konovalov.data.CryptAlphabetArray.getCryptArrayAlphabet;
-import static ru.javarush.cryptoanalyzer.konovalov.printer.Printable.println;
-import static ru.javarush.cryptoanalyzer.konovalov.reader.Reader.getReader;
+import static ru.javarush.cryptoanalyzer.konovalov.io.Printable.println;
+import static ru.javarush.cryptoanalyzer.konovalov.io.Reader.getReader;
 import static ru.javarush.cryptoanalyzer.konovalov.util.PathFinder.getRoot;
-import static ru.javarush.cryptoanalyzer.konovalov.writer.Writer.getWriter;
+import static ru.javarush.cryptoanalyzer.konovalov.io.Writer.getWriter;
 
 public class BruteForceDecoder implements Actionable {
     public void action(String[] parameters) { //{ encryptedFile.txt, resultFile.txt, example.txt}

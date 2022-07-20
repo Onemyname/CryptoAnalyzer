@@ -8,7 +8,7 @@ import java.util.HashMap;
 import static ru.javarush.cryptoanalyzer.konovalov.controller.RegisterCommandService.getChosenCommand;
 import static ru.javarush.cryptoanalyzer.konovalov.strategy.CaesarMethod.CaesarMainCommandService.createCaesarCryptHashMap;
 import static ru.javarush.cryptoanalyzer.konovalov.strategy.CaesarMethod.CaesarMainCommandService.encodeOrDecodeFile;
-import static ru.javarush.cryptoanalyzer.konovalov.printer.Printable.println;
+import static ru.javarush.cryptoanalyzer.konovalov.io.Printable.println;
 
 public class CaesarEncoder implements Actionable {
 

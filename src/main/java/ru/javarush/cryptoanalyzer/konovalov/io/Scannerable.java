@@ -1,4 +1,4 @@
-package ru.javarush.cryptoanalyzer.konovalov.scanner;
+package ru.javarush.cryptoanalyzer.konovalov.io;
 
 import java.util.Scanner;
 

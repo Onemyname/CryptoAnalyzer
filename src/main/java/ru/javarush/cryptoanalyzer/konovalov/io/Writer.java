@@ -1,4 +1,4 @@
-package ru.javarush.cryptoanalyzer.konovalov.writer;
+package ru.javarush.cryptoanalyzer.konovalov.io;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

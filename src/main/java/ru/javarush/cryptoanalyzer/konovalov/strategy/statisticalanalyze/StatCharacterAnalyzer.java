@@ -2,53 +2,56 @@ package ru.javarush.cryptoanalyzer.konovalov.strategy.statisticalanalyze;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static ru.javarush.cryptoanalyzer.konovalov.data.CryptAlphabetArray.getAlphabetList;
-import static ru.javarush.cryptoanalyzer.konovalov.reader.Reader.getReader;
+import static ru.javarush.cryptoanalyzer.konovalov.io.Reader.getReader;
 import static ru.javarush.cryptoanalyzer.konovalov.util.PathFinder.getRoot;
 
 public class StatCharacterAnalyzer {
 
-    public static int getTotalNumberOFfCharacters() {
-        return totalNumberOFfCharacters;
+    public static int getTotalChars() {
+        return totalChars;
     }
 
-    public static void setTotalNumberOFfCharacters(int totalNumberOFfCharacters) {
-        StatCharacterAnalyzer.totalNumberOFfCharacters = totalNumberOFfCharacters;
+    public static void setTotalChars(int totalChars) {
+        StatCharacterAnalyzer.totalChars = totalChars;
     }
 
-    private static int totalNumberOFfCharacters;
-
-    private static HashMap<Character, Double> mapPercentageOfCharactersInEncryptedFile = new HashMap<>();
-    private static HashMap<Character, Double> mapPercentageOfCharactersInExampleFile = new HashMap<>();
+    private static int totalChars;
 
     public static HashMap<Character, Character> getMapForDecodeEncryptedText(String encryptedText, String exampleText) {
 
-        mapPercentageOfCharactersInEncryptedFile = getMapPercentageCharactersStatistic(encryptedText);
+        HashMap<Character, Double> encryptedCharsPercentage = getCharsPercentage(encryptedText);
+        HashMap<Character, Double> exampleCharsPercentage = getCharsPercentage(exampleText);
 
-        mapPercentageOfCharactersInExampleFile = getMapPercentageCharactersStatistic(exampleText);
-
-        HashMap<Character, Character> mapForDecodeEncryptedText = createMapForDecodeEncryptedText(mapPercentageOfCharactersInEncryptedFile, mapPercentageOfCharactersInExampleFile);
-
-        return mapForDecodeEncryptedText;
+        return createMapForDecodeEncryptedText(encryptedCharsPercentage,
+                exampleCharsPercentage);
     }
 
-    private static HashMap<Character, Double> getMapPercentageCharactersStatistic(String filename) {
-        setTotalNumberOFfCharacters(0);
+    /**
+     * Takes a number and returns its square root.
+     * @param filename The value to square.
+     * @return The square root of the given number.
+     */
+    private static HashMap<Character, Double> getCharsPercentage(String filename) {
+        setTotalChars(0);
         HashMap<Character, Double> map = new HashMap<>();
+
         try (BufferedReader reader = getReader(getRoot() + filename)) {
-            String currentLine = reader.readLine();
+            String currentLine = reader.readLine().toLowerCase();
             while (currentLine != null) {
                 analyzeLine(currentLine, map);
-                currentLine = reader.readLine();
+                currentLine = reader.readLine() !=null? reader.readLine().toLowerCase() : null;
             }
-            convertMapInPercentageOfTotalUsingCharacters(map);
+            for (Map.Entry<Character, Double> entry : map.entrySet()) {
+                entry.setValue(entry.getValue() / getTotalChars());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return map;
     }
 
@@ -60,8 +63,8 @@ public class StatCharacterAnalyzer {
             for (int j = 0; j < encodedWord.length(); j++) {
 
                 char symbol = encodedWord.charAt(j);
-                setTotalNumberOFfCharacters(getTotalNumberOFfCharacters() + 1);
-                if(!getAlphabetList().contains(symbol)){
+                setTotalChars(getTotalChars() + 1);
+                if (!getAlphabetList().contains(symbol)) {
                     continue;
                 }
                 if (map.containsKey(symbol)) {
@@ -73,19 +76,43 @@ public class StatCharacterAnalyzer {
         }
     }
 
-    private static void convertMapInPercentageOfTotalUsingCharacters(HashMap<Character, Double> map) {
-        Iterator<Map.Entry<Character, Double>> itr = map.entrySet().iterator();
-        while (itr.hasNext()) {
-            Map.Entry<Character, Double> entry = itr.next();
-            entry.setValue(entry.getValue() / getTotalNumberOFfCharacters());
-        }
-    }
-
-
     private static HashMap<Character, Character> createMapForDecodeEncryptedText(HashMap<Character, Double> encryptedMap, HashMap<Character, Double> exampleMap) {
 
-        return null;
+        Map<Character, Double> sortedEncryptedMap = sortMap(encryptedMap, false);
+        Map<Character, Double> sortedExampleMap = sortMap(exampleMap, false);
+
+        return сompareKeysByPercentageValues(sortedEncryptedMap, sortedExampleMap);
     }
 
+private static Map<Character, Double> sortMap(Map<Character, Double> unsortMap, final boolean order)
+    {
+        List<Map.Entry<Character, Double>> list = new LinkedList<>(unsortMap.entrySet());
+
+        // Sorting the list based on values
+        list.sort((o1, o2) -> order ? o1.getValue().compareTo(o2.getValue()) == 0
+                ? o1.getKey().compareTo(o2.getKey())
+                : o1.getValue().compareTo(o2.getValue()) : o2.getValue().compareTo(o1.getValue()) == 0
+                ? o2.getKey().compareTo(o1.getKey())
+                : o2.getValue().compareTo(o1.getValue()));
+        return list.stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> b, LinkedHashMap::new));
+
+    }
+    private static HashMap<Character, Character> сompareKeysByPercentageValues(Map<Character, Double> sortedEncryptedMap,
+                                                                               Map<Character, Double> sortedExampleMap) {
+
+        HashMap<Character, Character> resultMap = new HashMap<>();
+        Iterator<Map.Entry<Character, Double>> itr = sortedEncryptedMap.entrySet().iterator();
+        Iterator<Map.Entry<Character, Double>> itr2 = sortedExampleMap.entrySet().iterator();
+
+        while (itr.hasNext() && itr2.hasNext()) {
+            Map.Entry<Character, Double> entry = itr.next();
+            Character firstKey = entry.getKey();
+            Map.Entry<Character, Double> entryExample = itr2.next();
+            Character secondKey = entryExample.getKey();
+            resultMap.put(firstKey, secondKey);
+
+        }
+        return resultMap;
+    }
 
 }
