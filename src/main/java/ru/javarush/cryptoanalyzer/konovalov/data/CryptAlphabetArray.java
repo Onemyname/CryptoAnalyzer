@@ -22,10 +22,6 @@ public class CryptAlphabetArray {
         return alphabetList;
     }
 
-    public static void setAlphabetList(List<Character> alphabetList) {
-        CryptAlphabetArray.alphabetList = alphabetList;
-    }
-
     private static List<Character> alphabetList = ALPHABET_WITHOUT_CIPHERS.chars().mapToObj(c -> (char) c).toList();
 
     public static char[] getCryptArrayAlphabet() {

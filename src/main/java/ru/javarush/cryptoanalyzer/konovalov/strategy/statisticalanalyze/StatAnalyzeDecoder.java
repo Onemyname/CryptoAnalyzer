@@ -11,7 +11,7 @@ import java.util.Map;
 
 import static ru.javarush.cryptoanalyzer.konovalov.printer.Printable.println;
 import static ru.javarush.cryptoanalyzer.konovalov.reader.Reader.getReader;
-import static ru.javarush.cryptoanalyzer.konovalov.strategy.statisticalanalyze.StatCharacterAnalyze.getMapForDecodeEncryptedText;
+import static ru.javarush.cryptoanalyzer.konovalov.strategy.statisticalanalyze.StatCharacterAnalyzer.getMapForDecodeEncryptedText;
 import static ru.javarush.cryptoanalyzer.konovalov.util.PathFinder.getRoot;
 import static ru.javarush.cryptoanalyzer.konovalov.writer.Writer.getWriter;
 
