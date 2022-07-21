@@ -7,15 +7,14 @@ import static ru.javarush.cryptoanalyzer.konovalov.controller.Menu.*;
 import static ru.javarush.cryptoanalyzer.konovalov.controller.RegisterCommandService.*;
 import static ru.javarush.cryptoanalyzer.konovalov.data.CryptoKey.*;
 import static ru.javarush.cryptoanalyzer.konovalov.io.Printable.println;
-import static ru.javarush.cryptoanalyzer.konovalov.io.Scannerable.readIntFromConsole;
-import static ru.javarush.cryptoanalyzer.konovalov.io.Scannerable.readLineFromConsole;
+import static ru.javarush.cryptoanalyzer.konovalov.io.Scannerable.*;
 import static ru.javarush.cryptoanalyzer.konovalov.registeruser.UserRegisterService.enterCorrectUserName;
 import static ru.javarush.cryptoanalyzer.konovalov.strategy.CryptoNavigator.*;
 import static ru.javarush.cryptoanalyzer.konovalov.util.PathFinder.*;
 
 public class MainController {
 
-    public static void registerUser() {
+    public void registerUser() {
         println(WELCOME_STRING);
 
         // The loop runs until the correct name is entered
@@ -37,7 +36,7 @@ public class MainController {
         }
     }
 
-    public static int selectOperationMode() {
+    public int selectOperationMode() {
         println(SELECT_OPERATION_MODES);
 
         // The loop runs until the correct command is entered
@@ -57,7 +56,7 @@ public class MainController {
         return getChosenCommand();
     }
 
-    public static int selectKey() {
+    public int selectKey() {
         println(SELECT_CRYPT_KEY);
 
         // The loop runs until the correct key is entered
@@ -69,7 +68,7 @@ public class MainController {
         return getCryptKey();
     }
 
-    public static String selectFile() {
+    public String selectFile() {
         // The loop runs until the correct filename is entered and filename exists in directory "CryptoAnalyzer/text"
         do {
             checkExistenceOfFile(readLineFromConsole());
@@ -80,7 +79,7 @@ public class MainController {
         return getFileName();
     }
 
-    private static void handleExit() {
+    private void handleExit() {
         println(EXIT.toString());
         System.exit(0);
     }

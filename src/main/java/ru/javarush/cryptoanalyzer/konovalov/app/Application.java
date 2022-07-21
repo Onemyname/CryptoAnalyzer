@@ -23,7 +23,7 @@ public class Application {
     }
 
     public void startVerification() {
-        MainController.registerUser();
+        mainController.registerUser();
     }
 
     /**
@@ -33,16 +33,16 @@ public class Application {
     public String[] parseParameters() {
         String[] parameters = new String[CommandsInfo.values().length - 1];
 
-        parameters[0] = String.valueOf(MainController.selectOperationMode());
-        parameters[1] = MainController.selectFile();
-        parameters[2] = MainController.selectFile();
+        parameters[0] = String.valueOf(mainController.selectOperationMode());
+        parameters[1] = mainController.selectFile();
+        parameters[2] = mainController.selectFile();
         //For Caesar Encoder-Decoder need key
         if (getChosenCommand() == 0 || getChosenCommand() == 1) {
-            parameters[3] = String.valueOf(MainController.selectKey());
+            parameters[3] = String.valueOf(mainController.selectKey());
         }
         //For BrutForce need vocabulary, for StatAnalyzeDecoder need text by the same author
         else if (getChosenCommand() == 2 || getChosenCommand() == 3) {
-            parameters[3] = MainController.selectFile();
+            parameters[3] = mainController.selectFile();
         }
 
         return parameters;
