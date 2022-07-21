@@ -2,11 +2,11 @@ package ru.javarush.cryptoanalyzer.konovalov.data;
 
 import java.util.List;
 
-import static ru.javarush.cryptoanalyzer.konovalov.data.Alphabet.*;
-
 public class CryptAlphabetArray {
 
-    private static final String ALL_ALPHABET = ENGLISH_LETTERS.toString().toLowerCase();
+    //In order for the Caesar cipher and statistical analysis to work well at the same time, the alphabet contains only letters
+    private static final String ENGLISH_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String ALL_ALPHABET = ENGLISH_LETTERS.toLowerCase();
 
     private static final char[] CRYPT_ALPHABET_ARRAY = ALL_ALPHABET.toCharArray();
 
@@ -14,7 +14,7 @@ public class CryptAlphabetArray {
         return alphabetList;
     }
 
-    private static final List<Character> alphabetList = ENGLISH_LETTERS.toString().toLowerCase().chars().mapToObj(c -> (char) c).toList();
+    private static final List<Character> alphabetList = ENGLISH_LETTERS.toLowerCase().chars().mapToObj(c -> (char) c).toList();
 
     public static char[] getCryptArrayAlphabet() {
         return CRYPT_ALPHABET_ARRAY;
