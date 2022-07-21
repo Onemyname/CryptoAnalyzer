@@ -10,9 +10,6 @@ public class CryptAlphabetArray {
 
     private static final char[] CRYPT_ALPHABET_ARRAY = ALL_ALPHABET.toCharArray();
 
-
-    private static final List<Character> allAlphabetList = ALL_ALPHABET.chars().mapToObj(c -> (char) c).toList();
-
     public static List<Character> getAlphabetList() {
         return alphabetList;
     }

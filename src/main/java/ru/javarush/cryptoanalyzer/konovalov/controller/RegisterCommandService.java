@@ -2,7 +2,11 @@ package ru.javarush.cryptoanalyzer.konovalov.controller;
 
 import ru.javarush.cryptoanalyzer.konovalov.exception.UnknownCommandException;
 
+import java.util.InputMismatchException;
+
+import static ru.javarush.cryptoanalyzer.konovalov.controller.Menu.COMMAND_MUST_BE_NUMERIC;
 import static ru.javarush.cryptoanalyzer.konovalov.controller.Menu.WRONG_COMMAND;
+import static ru.javarush.cryptoanalyzer.konovalov.io.Printable.println;
 
 public class RegisterCommandService {
 
@@ -25,14 +29,18 @@ public class RegisterCommandService {
         RegisterCommandService.chosenCommand = chosenCommand;
     }
 
-    public static void enterCorrectCommand(int userCommand) throws UnknownCommandException {
-        if (userCommand >= 0 && userCommand < Commands.values().length) {
-            setChosenCommand(userCommand);
-            setStatusCommand(true);
-        } else {
-            throw new UnknownCommandException(WRONG_COMMAND.toString());
+    public static void enterCorrectCommand(int userCommand) {
+        try {
+            if (userCommand >= 0 && userCommand < CommandsInfo.values().length) {
+                setChosenCommand(userCommand);
+                setStatusCommand(true);
+            } else {
+                throw new UnknownCommandException(WRONG_COMMAND.toString());
+            }
+        } catch (UnknownCommandException e) {
+            println(e.getMessage());
+        } catch (InputMismatchException e) {
+            println(COMMAND_MUST_BE_NUMERIC);
         }
-
-
     }
 }

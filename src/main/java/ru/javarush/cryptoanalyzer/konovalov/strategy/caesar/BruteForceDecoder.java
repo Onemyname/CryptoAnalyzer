@@ -20,22 +20,29 @@ import static ru.javarush.cryptoanalyzer.konovalov.util.PathFinder.getRoot;
 import static ru.javarush.cryptoanalyzer.konovalov.io.Writer.getWriter;
 
 public class BruteForceDecoder implements CryptoStrategy {
-    public void codingInformation(String[] parameters) { //{ encryptedFile.txt, resultFile.txt, example.txt}
+    public void codingInformation(String[] parameters) {
         println("Brute force decryption attempt");
+
         String[] encryptedLine = readFile(parameters[0]);
-        String[] exampleLine = readFile(parameters[2]); //set of language key words like he she it and but the etc
-        bruteForceLine(encryptedLine,exampleLine,parameters[1]);
+        //set of language key words like he she it and but the etc
+        String[] exampleLine = readFile(parameters[2]);
+
+        bruteForceLine(encryptedLine, exampleLine, parameters[1]);
+
+        println("The text is decrypted!");
     }
     static String[] readFile(String file) {
         StringBuilder sb = new StringBuilder();
-        try (BufferedReader readerE = getReader(getRoot() + file)) {
+
+        try (BufferedReader reader = getReader(getRoot() + file)) {
             String currentLine;
-            while ((currentLine = readerE.readLine()) != null) {
+            while ((currentLine = reader.readLine()) != null) {
                 sb.append("\n" + currentLine);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return sb.toString().split(" ");
     }
     static void bruteForceLine(String[] encryptedLine, String[] exampleLine, String resultFile) {
@@ -58,10 +65,10 @@ public class BruteForceDecoder implements CryptoStrategy {
             if (stringsToCheck.stream().anyMatch(exampleArrayList::contains)) { //comparing decoded list to example list
                 int countMatches = 0;
                 int needMatches = 1;
-                int totalCharacters = 100;
+                int totalWords = 100;
 
-                if (stringsToCheck.size() > totalCharacters) {
-                    needMatches = stringsToCheck.size() / totalCharacters;
+                if (stringsToCheck.size() > totalWords) {
+                    needMatches = stringsToCheck.size() / totalWords;
                 }
 
                 for (String s : stringsToCheck) {
@@ -100,10 +107,10 @@ public class BruteForceDecoder implements CryptoStrategy {
     static void writeResult(String resultFile, List<String> toCheck){
         try(BufferedWriter writer = getWriter(getRoot() + resultFile)){
             String result = String.join(" ", toCheck);
-            writer.write(result.toString());
+            writer.write(result);
             writer.append('\n');
         }catch (IOException e){
-            System.out.println("resultFile not found!");
+            e.printStackTrace();
         }
     }
 }

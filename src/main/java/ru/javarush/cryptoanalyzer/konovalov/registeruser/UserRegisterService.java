@@ -5,6 +5,8 @@ import ru.javarush.cryptoanalyzer.konovalov.exception.NameContainsNumbersOrSymbo
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static ru.javarush.cryptoanalyzer.konovalov.io.Printable.println;
+
 public class UserRegisterService {
     private static boolean isValidUsername(String userName) {
 
@@ -25,12 +27,17 @@ public class UserRegisterService {
         return m.matches();
     }
 
-    public static void enterCorrectUserName(String userName) throws NameContainsNumbersOrSymbolsException {
-        if (isValidUsername(userName)) {
-            User.setUserNameIsRight(true);
-            User.setUserName(userName);
-        } else {
-            throw new NameContainsNumbersOrSymbolsException("Please enter a correct name without numbers and symbols:");
+    public static void enterCorrectUserName(String userName){
+        try {
+            if (isValidUsername(userName)) {
+                User.setUserNameIsRight(true);
+                User.setUserName(userName);
+            } else {
+                throw new NameContainsNumbersOrSymbolsException("Please enter a correct name without numbers and symbols:");
+            }
+        }
+        catch(NameContainsNumbersOrSymbolsException e){
+            println(e.getMessage());
         }
     }
 }

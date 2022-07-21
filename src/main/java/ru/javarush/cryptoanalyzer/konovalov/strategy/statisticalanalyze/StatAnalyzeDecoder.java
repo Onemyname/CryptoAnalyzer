@@ -24,17 +24,10 @@ public class StatAnalyzeDecoder implements CryptoStrategy {
     public void codingInformation(String[] args) { // {encryptedFile.txt, resultFile.txt, example.txt}
         println("Decryption attempt");
 
-        mapForDecodeEncryptedText = getMapForDecodeEncryptedText(args[0], args [2]);
-
-        for (Map.Entry<Character, Character> entry : mapForDecodeEncryptedText.entrySet()) {
-            Character key = entry.getKey();
-            System.out.print("key: " + key + " ");
-            Character value = entry.getValue();
-            System.out.print("value: " + value);
-            System.out.println("");
-        }
-
+        mapForDecodeEncryptedText = getMapForDecodeEncryptedText(args[0], args[2]);
         decodeEncryptedText(args[0], args[1]);
+
+        println("The text is decrypted!");
     }
 
     private static void decodeEncryptedText(String encryptedText, String resultFile) {

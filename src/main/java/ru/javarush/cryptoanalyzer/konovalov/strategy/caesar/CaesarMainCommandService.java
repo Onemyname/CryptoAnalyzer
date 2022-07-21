@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static ru.javarush.cryptoanalyzer.konovalov.io.Printable.println;
 import static ru.javarush.cryptoanalyzer.konovalov.io.Reader.getReader;
 import static ru.javarush.cryptoanalyzer.konovalov.io.Writer.getWriter;
 import static ru.javarush.cryptoanalyzer.konovalov.data.CryptAlphabetArray.getCryptAlphabetArrayLength;
@@ -14,10 +15,9 @@ public class CaesarMainCommandService {
 
     static HashMap<Character, Character> createCaesarCryptHashMap(int key, int command) {
         HashMap<Character, Character> map = new HashMap<>(getCryptAlphabetArrayLength());
-
         char[] alphabet = getCryptArrayAlphabet();
-
         char cryptValue;
+
         if (command == 0) {
             for (int i = 0; i < alphabet.length; i++) {
                 cryptValue = i + key <= alphabet.length - 1 ? alphabet[i + key] : alphabet[(key - (alphabet.length - i))];
@@ -29,20 +29,23 @@ public class CaesarMainCommandService {
                 map.put(alphabet[i], cryptValue);
             }
         }
+
         return map;
     }
 
-    static void encodeOrDecodeFile(String fileToEncrypt, String resultFile, HashMap<Character, Character> cryptMap) throws IOException {
+    static void encodeOrDecodeFile(String fileToEncrypt, String resultFile, HashMap<Character, Character> cryptMap){
         try (BufferedReader reader = getReader(getRoot() + fileToEncrypt);
              BufferedWriter writer = getWriter(getRoot() + resultFile))
         {
             String currentLine = reader.readLine().toLowerCase();
+
             while (currentLine != null) {
                 String cryptoLine = encodeOrDecodeLine(currentLine, cryptMap);
                 writer.write(cryptoLine);
                 writer.append('\n');
                 currentLine = reader.readLine() != null ? reader.readLine().toLowerCase() : null;
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

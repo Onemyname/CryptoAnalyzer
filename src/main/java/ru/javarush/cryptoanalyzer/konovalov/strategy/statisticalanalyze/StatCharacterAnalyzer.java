@@ -30,11 +30,6 @@ public class StatCharacterAnalyzer {
                 exampleCharsPercentage);
     }
 
-    /**
-     * Takes a number and returns its square root.
-     * @param filename The value to square.
-     * @return The square root of the given number.
-     */
     private static HashMap<Character, Double> getCharsPercentage(String filename) {
         setTotalChars(0);
         HashMap<Character, Double> map = new HashMap<>();
@@ -107,13 +102,10 @@ private static Map<Character, Double> sortMap(Map<Character, Double> unsortedMap
 
         while (itr.hasNext() && itr2.hasNext()) {
             Map.Entry<Character, Double> entry = itr.next();
-            Character firstKey = entry.getKey();
             Map.Entry<Character, Double> entryExample = itr2.next();
-            Character secondKey = entryExample.getKey();
-            resultMap.put(firstKey, secondKey);
-
+            resultMap.put(entry.getKey(), entryExample.getKey());
         }
+
         return resultMap;
     }
-
 }

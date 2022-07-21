@@ -15,12 +15,11 @@ public class CaesarEncoder implements CryptoStrategy {
 
     public void codingInformation(String[] parameters) { // String[] args[] = {fileToEncrypt.txt, resultFile.txt, key}
         println("Encryption attempt");
+
         HashMap<Character, Character> cryptMap = createCaesarCryptHashMap(Integer.parseInt(parameters[2]), getChosenCommand());
-        try {
-            encodeOrDecodeFile(parameters[0], parameters[1], cryptMap);
-        } catch (IOException e) {
-            println("Error");
-        }
+        encodeOrDecodeFile(parameters[0], parameters[1], cryptMap);
+
+        println("The text is encrypted!");
 
 
     }
