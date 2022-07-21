@@ -35,10 +35,11 @@ public class StatCharacterAnalyzer {
         HashMap<Character, Double> map = new HashMap<>();
 
         try (BufferedReader reader = getReader(getRoot() + filename)) {
-            String currentLine = reader.readLine().toLowerCase();
-            while (currentLine != null) {
-                analyzeLine(currentLine, map);
-                currentLine = reader.readLine() !=null? reader.readLine().toLowerCase() : null;
+            String lowerCaseLine = reader.readLine().toLowerCase();
+            while (lowerCaseLine != null) {
+                analyzeLine(lowerCaseLine, map);
+                String currentLine = reader.readLine();
+                lowerCaseLine = currentLine !=null? currentLine.toLowerCase() : null;
             }
             for (Map.Entry<Character, Double> entry : map.entrySet()) {
                 entry.setValue(entry.getValue() / getTotalChars());

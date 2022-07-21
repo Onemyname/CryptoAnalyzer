@@ -94,9 +94,13 @@ public class BruteForceDecoder implements CryptoStrategy {
 
         for (String encodedWord : encryptedLinesArray) {
             for (int j = 0; j < encodedWord.length(); j++) {
+
                 char symbol = encodedWord.charAt(j);
-                newSymbol = map.getOrDefault(symbol, symbol);
-                newWord.append(newSymbol.toString());
+                char lowerSymbol = Character.toLowerCase(symbol);
+                boolean isLowerCase = symbol == lowerSymbol;
+
+                newSymbol = map.getOrDefault(lowerSymbol, symbol);
+                newWord.append(isLowerCase ? newSymbol.toString() : newSymbol.toString().toUpperCase());
             }
             encodedLine.add(newWord);
             newWord = new StringBuilder();
@@ -104,11 +108,14 @@ public class BruteForceDecoder implements CryptoStrategy {
 
         return encodedLine;
     }
+
     static void writeResult(String resultFile, List<String> toCheck){
         try(BufferedWriter writer = getWriter(getRoot() + resultFile)){
             String result = String.join(" ", toCheck);
             writer.write(result);
-            writer.append('\n');
+            if(result!=null) {
+                writer.append('\n');
+            }
         }catch (IOException e){
             e.printStackTrace();
         }

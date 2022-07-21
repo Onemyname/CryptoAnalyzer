@@ -2,12 +2,11 @@ package ru.javarush.cryptoanalyzer.konovalov.strategy.caesar;
 
 import ru.javarush.cryptoanalyzer.konovalov.strategy.CryptoStrategy;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 import static ru.javarush.cryptoanalyzer.konovalov.controller.RegisterCommandService.getChosenCommand;
-import static ru.javarush.cryptoanalyzer.konovalov.strategy.caesar.CaesarMainCommandService.createCaesarCryptHashMap;
-import static ru.javarush.cryptoanalyzer.konovalov.strategy.caesar.CaesarMainCommandService.encodeOrDecodeFile;
+import static ru.javarush.cryptoanalyzer.konovalov.strategy.caesar.CaesarService.createCaesarCryptHashMap;
+import static ru.javarush.cryptoanalyzer.konovalov.strategy.caesar.CaesarService.encodeOrDecodeFile;
 import static ru.javarush.cryptoanalyzer.konovalov.io.Printable.println;
 
 public class CaesarDecoder implements CryptoStrategy {
