@@ -45,7 +45,6 @@ public class CaesarService {
                 writer.write(cryptoLine);
                 currentLine = reader.readLine();
                 String lowerCaseLine = currentLine != null ? currentLine.toLowerCase() : null;
-                System.out.println(lowerCaseLine);
                 if (lowerCaseLine != null) {
                     writer.append('\n');
                 }
