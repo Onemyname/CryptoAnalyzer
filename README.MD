@@ -42,7 +42,7 @@ Created by Konovalov Vadim, Belousov Vladimir, Lev Nagornov.
 - [Maintainers](#maintainers)
 - [Contributing](#contributing)
 - [License](#license)
-- 
+ 
 ## Install
 
 1. Clone the repository using:
