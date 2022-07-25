@@ -1,6 +1,6 @@
 <div align="center">
     <h1>Crypto Analyzer App</h1>
-    <img src="CaesarCipher.png">
+    <img src="CaesarCipher.png" width="230" height="230">
 </div>
 
 ## <h2>Crypto Analyzer App </h2>
