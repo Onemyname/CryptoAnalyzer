@@ -19,13 +19,13 @@ Using the known key, the ciphertext is decrypted using the Caesar cipher.
 <p></p>
 Example: "Ifmmp xpsm", Key = 1;  Result = "Hello world"
 <p></p>   
-<li>Text Decipherment using brute force searching. </li>
+<li>Text Decipherment using Brute-force searching. </li>
 <p></p>
 There is a search of all keys. The decoder decrypts the text based on the metric of the most frequently used words.
 <p></p>
-Example: After going through all the keys, the decoder analyzed that with the key 11 in the text, words like "they", "are", "am", "an" occur most often. Therefore, 11 is the key you are looking for. The decryptor then decrypts the text using key 11.
+Example: After going through all the keys, the decoder analyzed that with the key 11 in the text, words like "they", "are", "am", "an" occured most often. Therefore, 11 is the key you are looking for. The decryptor then decrypts the text using key 11.
 <p></p> 
-<li> Text Decipherment using method of frequency statistical analysis. </li>
+<li> Text Decipherment using method of frequency statistical analysis method. </li>
 <p></p>
 Frequency analysis assumes that the frequency of occurrence of a given letter of the alphabet in sufficiently long texts is the same for different texts of the same language. If there is a symbol in the ciphertext with a similar probability of occurrence, then we can assume that it is the specified encrypted letter.
 <p></p>    
