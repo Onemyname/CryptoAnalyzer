@@ -5,10 +5,31 @@ import ru.javarush.cryptoanalyzer.konovalov.exception.NameContainsNumbersOrSymbo
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static ru.javarush.cryptoanalyzer.konovalov.io.Printable.println;
+import static ru.javarush.cryptoanalyzer.konovalov.io.Scannerable.readLineFromConsole;
 
 public class UserRegisterService {
-    private static boolean isValidUsername(String userName) {
+
+    private String userName;
+
+    private boolean userNameIsRight = false;
+
+    private void setUserNameIsRight(boolean value) {
+        userNameIsRight = value;
+    }
+
+    private boolean getUserNameIsRight() {
+        return userNameIsRight;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    private void setUserName(String name) {
+        userName = name;
+    }
+
+    private boolean isValidUsername(String userName) {
 
         // Regex to check valid username.
         String regex = "(?<=\\s|^)[a-zA-Z][a-z A-Z]*[a-zA-Z]*(?=[.,;:]?\\s|$)";
@@ -27,17 +48,21 @@ public class UserRegisterService {
         return m.matches();
     }
 
-    public static void enterCorrectUserName(String userName){
-        try {
-            if (isValidUsername(userName)) {
-                User.setUserNameIsRight(true);
-                User.setUserName(userName);
-            } else {
-                throw new NameContainsNumbersOrSymbolsException("Please enter a correct name without numbers and symbols:");
+    public void registerCorrectName() {
+        do {
+            String userName = readLineFromConsole();
+            try {
+                if (isValidUsername(userName)) {
+                    setUserNameIsRight(true);
+                    setUserName(userName);
+                } else {
+                    throw new NameContainsNumbersOrSymbolsException("Please enter a correct name without numbers and symbols:");
+                }
+            } catch (NameContainsNumbersOrSymbolsException e) {
+                e.printStackTrace();
             }
         }
-        catch(NameContainsNumbersOrSymbolsException e){
-            println(e.getMessage());
-        }
+        while (!getUserNameIsRight());
+
     }
 }

@@ -13,21 +13,14 @@ Exit {4}
 import ru.javarush.cryptoanalyzer.konovalov.app.Application;
 import ru.javarush.cryptoanalyzer.konovalov.controller.MainController;
 
-public class Runner {
+public class ConsoleRunner {
     public static void main(String[] args) {
 
         MainController mainController = new MainController();
         Application application = new Application(mainController);
 
-        //Registering the user name
-        application.startVerification();
+        args = args.length == 0 ? application.fillParameters() : application.checkValidParameters(args);
 
-        if (args.length == 0) {
-            //Requests data from user for run program
-            String[] parameters = application.parseParameters();
-            application.runProgramCryptAnalyzer(parameters);
-        } else {
-            application.runProgramCryptAnalyzer(args);
-        }
+        application.runCryptoAnalyzer(args);
     }
 }

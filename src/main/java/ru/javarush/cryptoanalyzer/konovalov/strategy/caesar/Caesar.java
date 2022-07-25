@@ -3,7 +3,6 @@ package ru.javarush.cryptoanalyzer.konovalov.strategy.caesar;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import static ru.javarush.cryptoanalyzer.konovalov.data.CryptAlphabetArray.getCryptAlphabetArrayLength;
@@ -12,9 +11,9 @@ import static ru.javarush.cryptoanalyzer.konovalov.io.Reader.getReader;
 import static ru.javarush.cryptoanalyzer.konovalov.io.Writer.getWriter;
 import static ru.javarush.cryptoanalyzer.konovalov.util.PathFinder.getRoot;
 
-public class CaesarService {
+public abstract class Caesar {
 
-    static HashMap<Character, Character> createCaesarCryptHashMap(int key, int command) {
+        HashMap<Character, Character> createCaesarCryptHashMap(int key, int command) {
         HashMap<Character, Character> map = new HashMap<>(getCryptAlphabetArrayLength());
         char[] alphabet = getCryptArrayAlphabet();
         char cryptValue;
@@ -34,7 +33,7 @@ public class CaesarService {
         return map;
     }
 
-    static void encodeOrDecodeFile(String fileToEncrypt, String resultFile, HashMap<Character, Character> cryptMap) {
+    public void encodeOrDecodeFile(String fileToEncrypt, String resultFile, HashMap<Character, Character> cryptMap) {
         try (BufferedReader reader = getReader(getRoot() + fileToEncrypt);
              BufferedWriter writer = getWriter(getRoot() + resultFile)) {
             String currentLine = reader.readLine().toLowerCase();
@@ -55,7 +54,7 @@ public class CaesarService {
         }
     }
 
-    static String encodeOrDecodeLine(String line, HashMap<Character, Character> cryptMap) {
+    String encodeOrDecodeLine(String line, HashMap<Character, Character> cryptMap) {
         char newSymbol;
         StringBuilder newLine = new StringBuilder();
         for (int i = 0; i < line.length(); i++) {

@@ -19,9 +19,8 @@ import static ru.javarush.cryptoanalyzer.konovalov.io.Reader.getReader;
 import static ru.javarush.cryptoanalyzer.konovalov.util.PathFinder.getRoot;
 import static ru.javarush.cryptoanalyzer.konovalov.io.Writer.getWriter;
 
-public class BruteForceDecoder implements CryptoStrategy {
+public class BruteForceDecoder extends Caesar implements CryptoStrategy {
     public void codingInformation(String[] parameters) {
-        println("Brute force decryption attempt");
 
         String[] encryptedLine = readFile(parameters[0]);
         //set of language key words like he she it and but the etc
@@ -29,7 +28,7 @@ public class BruteForceDecoder implements CryptoStrategy {
 
         bruteForceLine(encryptedLine, exampleLine, parameters[1]);
 
-        println("The text is decrypted!");
+
     }
     static String[] readFile(String file) {
         StringBuilder sb = new StringBuilder();

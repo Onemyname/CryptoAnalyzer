@@ -11,17 +11,17 @@ import static ru.javarush.cryptoanalyzer.konovalov.util.PathFinder.getRoot;
 
 public class StatCharacterAnalyzer {
 
-    public static int getTotalChars() {
+    public  int getTotalChars() {
         return totalChars;
     }
 
-    public static void setTotalChars(int totalChars) {
+    public  void setTotalChars(int totalChars) {
         StatCharacterAnalyzer.totalChars = totalChars;
     }
 
-    private static int totalChars;
+    private int totalChars;
 
-    public static HashMap<Character, Character> getMapForDecodeEncryptedText(String encryptedText, String exampleText) {
+    public HashMap<Character, Character> getMapForDecodeEncryptedText(String encryptedText, String exampleText) {
 
         HashMap<Character, Double> encryptedCharsPercentage = getCharsPercentage(encryptedText);
         HashMap<Character, Double> exampleCharsPercentage = getCharsPercentage(exampleText);
@@ -30,7 +30,7 @@ public class StatCharacterAnalyzer {
                 exampleCharsPercentage);
     }
 
-    private static HashMap<Character, Double> getCharsPercentage(String filename) {
+    private HashMap<Character, Double> getCharsPercentage(String filename) {
         setTotalChars(0);
         HashMap<Character, Double> map = new HashMap<>();
 
@@ -51,7 +51,7 @@ public class StatCharacterAnalyzer {
         return map;
     }
 
-    private static void analyzeLine(String line, HashMap<Character, Double> map) {
+    private void analyzeLine(String line, HashMap<Character, Double> map) {
 
         String[] linesArray = line.split(" ");
 
@@ -72,7 +72,7 @@ public class StatCharacterAnalyzer {
         }
     }
 
-    private static HashMap<Character, Character> createMapForDecodeEncryptedText(HashMap<Character, Double> encryptedMap, HashMap<Character, Double> exampleMap) {
+    private  HashMap<Character, Character> createMapForDecodeEncryptedText(HashMap<Character, Double> encryptedMap, HashMap<Character, Double> exampleMap) {
 
         Map<Character, Double> sortedEncryptedMap = sortMap(encryptedMap, false);
         Map<Character, Double> sortedExampleMap = sortMap(exampleMap, false);
@@ -80,7 +80,7 @@ public class StatCharacterAnalyzer {
         return compareMaps(sortedEncryptedMap, sortedExampleMap);
     }
 
-private static Map<Character, Double> sortMap(Map<Character, Double> unsortedMap, boolean order)
+private Map<Character, Double> sortMap(Map<Character, Double> unsortedMap, boolean order)
     {
         List<Map.Entry<Character, Double>> list = new LinkedList<>(unsortedMap.entrySet());
 
@@ -94,7 +94,7 @@ private static Map<Character, Double> sortMap(Map<Character, Double> unsortedMap
         return list.stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> b, LinkedHashMap::new));
 
     }
-    private static HashMap<Character, Character> compareMaps(Map<Character, Double> sortedEncryptedMap,
+    private HashMap<Character, Character> compareMaps(Map<Character, Double> sortedEncryptedMap,
                                                              Map<Character, Double> sortedExampleMap) {
 
         HashMap<Character, Character> resultMap = new HashMap<>();

@@ -11,26 +11,24 @@ import java.util.Map;
 
 import static ru.javarush.cryptoanalyzer.konovalov.io.Printable.println;
 import static ru.javarush.cryptoanalyzer.konovalov.io.Reader.getReader;
-import static ru.javarush.cryptoanalyzer.konovalov.strategy.statisticalanalyze.StatCharacterAnalyzer.getMapForDecodeEncryptedText;
-import static ru.javarush.cryptoanalyzer.konovalov.util.PathFinder.getRoot;
 import static ru.javarush.cryptoanalyzer.konovalov.io.Writer.getWriter;
+import static ru.javarush.cryptoanalyzer.konovalov.util.PathFinder.getRoot;
 
 
 public class StatAnalyzeDecoder implements CryptoStrategy {
 
 
-    private static HashMap<Character, Character> mapForDecodeEncryptedText = new HashMap<>();
+    private HashMap<Character, Character> mapForDecodeEncryptedText = new HashMap<>();
 
     public void codingInformation(String[] args) { // {encryptedFile.txt, resultFile.txt, example.txt}
-        println("Decryption attempt");
+
 
         mapForDecodeEncryptedText = getMapForDecodeEncryptedText(args[0], args[2]);
         decodeEncryptedText(args[0], args[1]);
 
-        println("The text is decrypted!");
     }
 
-    private static void decodeEncryptedText(String encryptedText, String resultFile) {
+    private void decodeEncryptedText(String encryptedText, String resultFile) {
 
         try (BufferedReader reader = getReader(getRoot() + encryptedText);
              BufferedWriter writer = getWriter(getRoot() + resultFile)) {
@@ -49,7 +47,7 @@ public class StatAnalyzeDecoder implements CryptoStrategy {
         }
     }
 
-    private static String decodeLine(String line) {
+    private String decodeLine(String line) {
 
         String[] linesArray = line.split(" ");
 
