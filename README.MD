@@ -85,4 +85,4 @@ PRs accepted.
 
 ## License
 
-[MIT © Vadim Konovalov](../LICENSE)
+[MIT © Vadim Konovalov](LICENSE.txt)
