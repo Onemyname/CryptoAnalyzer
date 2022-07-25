@@ -40,7 +40,9 @@ Created by Konovalov Vadim, Belousov Vladimir, Lev Nagornov.
 - [Install](#install)
 - [Usage](#usage)
 - [Maintainers](#maintainers)
-
+- [Contributing](#contributing)
+- [License](#license)
+- 
 ## Install
 
 1. Clone the repository using:
@@ -76,3 +78,11 @@ java -Runner.java
 [@Onemyname](https://github.com/Onemyname)
 [@lnagornov](https://github.com/lnagornov)
 [@vladimirbelousovk](https://github.com/vladimirbelousovk)
+
+## Contributing
+
+PRs accepted.
+
+## License
+
+[MIT © Vadim Konovalov](../LICENSE)
