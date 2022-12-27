@@ -1,6 +1,4 @@
-//package ru.javarush.cryptoanalyzer.konovalov.strategy.caesar;
-//
-//
+
 //public class CaesarDecoder {
 //    public void codingInformation(String[] parameters) {
 //

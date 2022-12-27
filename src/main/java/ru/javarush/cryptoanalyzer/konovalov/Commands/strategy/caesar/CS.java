@@ -1,17 +1,4 @@
-//package ru.javarush.cryptoanalyzer.konovalov.strategy.caesar;
-//
-//import java.io.BufferedReader;
-//import java.io.BufferedWriter;
-//import java.io.IOException;
-//import java.util.ArrayList;
-//import java.util.HashMap;
-//
-//import static ru.javarush.cryptoanalyzer.konovalov.data.CryptAlphabetArray.getCryptAlphabetArrayLength;
-//import static ru.javarush.cryptoanalyzer.konovalov.data.CryptAlphabetArray.getCryptArrayAlphabet;
-//import static ru.javarush.cryptoanalyzer.konovalov.io.Reader.getReader;
-//import static ru.javarush.cryptoanalyzer.konovalov.io.Writer.getWriter;
-//import static ru.javarush.cryptoanalyzer.konovalov.util.PathFinder.getRoot;
-//
+
 //public class CaesarService {
 //
 //    static HashMap<Character, Character> createCaesarCryptHashMap(int key, int command) {

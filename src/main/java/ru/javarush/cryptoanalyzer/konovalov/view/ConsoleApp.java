@@ -1,13 +1,12 @@
 package ru.javarush.cryptoanalyzer.konovalov.view;
 
 
-
 import java.util.Arrays;
+
 import ru.javarush.cryptoanalyzer.konovalov.controller.MainController;
-import ru.javarush.cryptoanalyzer.konovalov.entity.Result;
-import ru.javarush.cryptoanalyzer.konovalov.entity.ResultCode;
-import static ru.javarush.cryptoanalyzer.konovalov.view.Messages.ERROR_FORMAT;
-import static ru.javarush.cryptoanalyzer.konovalov.view.Messages.OK_FORMAT;
+import ru.javarush.cryptoanalyzer.konovalov.entity.*;
+import static ru.javarush.cryptoanalyzer.konovalov.view.Messages.*;
+
 
 
 public class ConsoleApp {
@@ -21,27 +20,19 @@ public class ConsoleApp {
 
 
     public void run(String[] args) {
-
         Result result;
 
         do {
             if (args.length == 0) {
                 args = menu.getArgs();
             }
-
             result = getResult(args);
-
             print(result);
-
             args = new String[0];
 
         }
         while (result.RESULT_CODE == ResultCode.ERROR);
-
-
     }
-
-
     private Result getResult(String[] args) {
         String action = args[0];
         String[] parameters = Arrays.copyOfRange(args, 1, args.length);

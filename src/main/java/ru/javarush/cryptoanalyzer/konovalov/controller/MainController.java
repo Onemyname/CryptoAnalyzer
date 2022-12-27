@@ -8,8 +8,10 @@ import ru.javarush.cryptoanalyzer.konovalov.exception.AppException;
 public class MainController {
 
     public Result doAction(String actionName, String[] parameters) {
+
+        Action action = ActionContainer.getAction(actionName);
+
         try {
-            Action action = ActionContainer.getAction(actionName);
             return action.execute(parameters);
         }
         catch(AppException e){

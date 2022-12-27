@@ -1,14 +1,4 @@
-//package ru.javarush.cryptoanalyzer.konovalov.strategy.statisticalanalyze;
-//
-//import java.io.BufferedReader;
-//import java.io.IOException;
-//import java.util.*;
-//import java.util.stream.Collectors;
-//
-//import static ru.javarush.cryptoanalyzer.konovalov.data.CryptAlphabetArray.getAlphabetList;
-//import static ru.javarush.cryptoanalyzer.konovalov.io.Reader.getReader;
-//import static ru.javarush.cryptoanalyzer.konovalov.util.PathFinder.getRoot;
-//
+
 //public class StatCharacterAnalyzer {
 //
 //    public static int getTotalChars() {

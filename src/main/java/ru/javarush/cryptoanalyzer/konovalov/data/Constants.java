@@ -1,28 +1,15 @@
 package ru.javarush.cryptoanalyzer.konovalov.data;
 
-import java.util.List;
+import java.io.File;
 
 public interface Constants {
 
-    String NOT_FOUND_ACTION_FORMAT = "Command not found!";
+    String TXT_FOLDER = System.getProperty("user.dir") +
+            File.separator +
+            "text" +
+            File.separator;
+    String INCORRECT_FILE = "Incorrect file: ";
+    String APPLICATION_CLOSED = "application closed";
 
-    String ENGLISH_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    String ALL_ALPHABET = ENGLISH_LETTERS.toLowerCase();
-
-    char[] CRYPT_ALPHABET_ARRAY = ALL_ALPHABET.toCharArray();
-
-    static List<Character> getAlphabetList() {
-        return alphabetList;
-    }
-
-    List<Character> alphabetList = ENGLISH_LETTERS.toLowerCase().chars().mapToObj(c -> (char) c).toList();
-
-    static char[] getCryptArrayAlphabet() {
-        return CRYPT_ALPHABET_ARRAY;
-    }
-
-    static int getCryptAlphabetArrayLength() {
-        return CRYPT_ALPHABET_ARRAY.length;
-    }
 
 }

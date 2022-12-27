@@ -1,23 +1,5 @@
-//package ru.javarush.cryptoanalyzer.konovalov.strategy.caesar;
-//
-///*
-//(Brute Force)
-// */
-//
-//
-//import java.io.BufferedReader;
-//import java.io.BufferedWriter;
-//import java.io.IOException;
-//import java.util.*;
-//
-//import static ru.javarush.cryptoanalyzer.konovalov.data.Constants.getCryptAlphabetArrayLength;
-//import static ru.javarush.cryptoanalyzer.konovalov.data.Constants.getCryptArrayAlphabet;
-//import static ru.javarush.cryptoanalyzer.konovalov.io.Printable.println;
-//import static ru.javarush.cryptoanalyzer.konovalov.io.Reader.getReader;
-//import static ru.javarush.cryptoanalyzer.konovalov.util.PathFinder.getRoot;
-//import static ru.javarush.cryptoanalyzer.konovalov.io.Writer.getWriter;
-//
-//public class BruteForceDecoder {
+
+//public class BruteDecoder {
 //    public void codingInformation(String[] parameters) {
 //
 //

@@ -1,18 +1,4 @@
-//package ru.javarush.cryptoanalyzer.konovalov.strategy.statisticalanalyze;
-//
-//import java.io.BufferedReader;
-//import java.io.BufferedWriter;
-//import java.io.IOException;
-//import java.util.ArrayList;
-//import java.util.HashMap;
-//
-//import static ru.javarush.cryptoanalyzer.konovalov.io.Printable.println;
-//import static ru.javarush.cryptoanalyzer.konovalov.io.Reader.getReader;
-//import static ru.javarush.cryptoanalyzer.konovalov.strategy.statisticalanalyze.StatCharacterAnalyzer.getMapForDecodeEncryptedText;
-//import static ru.javarush.cryptoanalyzer.konovalov.util.PathFinder.getRoot;
-//import static ru.javarush.cryptoanalyzer.konovalov.io.Writer.getWriter;
-//
-//
+
 //public class StatAnalyzeDecoder {
 //
 //

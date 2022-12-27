@@ -29,7 +29,7 @@ public interface Messages {
                     {"Enter destination (full path OR only filename OR Enter for analyzed.txt) :", "analyzed.txt"},
             },
             {
-                    {"Exit"},
+                    {Action.EXIT},
             }
     };
     String INCORRECT_SELECTION_MODE = "Incorrect selection!";
