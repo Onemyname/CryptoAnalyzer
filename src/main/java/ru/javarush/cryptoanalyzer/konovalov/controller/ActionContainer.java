@@ -4,7 +4,7 @@ package ru.javarush.cryptoanalyzer.konovalov.controller;
 import ru.javarush.cryptoanalyzer.konovalov.Commands.*;
 import ru.javarush.cryptoanalyzer.konovalov.data.Constants;
 import ru.javarush.cryptoanalyzer.konovalov.exception.AppException;
-
+@SuppressWarnings("unused")
 public enum ActionContainer {
     ENCODE(new CaesarEncoder()),
     DECODE(new CaesarDecoder()),
@@ -24,7 +24,7 @@ public enum ActionContainer {
             return value.ACTION;
         }
         catch( IllegalArgumentException e){
-            String message = String.format(Action.NOT_FOUND_ACTION_FORMAT, actionName);
+            String message = String.format(Constants.NOT_FOUND_ACTION_FORMAT, actionName);
             throw new AppException(message,e);
         }
     }

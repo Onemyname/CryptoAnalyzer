@@ -18,11 +18,11 @@ public class Alphabet {
 
     static List<Character> alphabetList = ENGLISH_LETTERS.toLowerCase().chars().mapToObj(c -> (char) c).toList();
 
-    static char[] getCryptArrayAlphabet() {
+    public static char[] getAlphabet() {
         return CRYPT_ALPHABET_ARRAY;
     }
 
-    static int getCryptAlphabetArrayLength() {
+    public static int getAlphabetLength() {
         return CRYPT_ALPHABET_ARRAY.length;
     }
 

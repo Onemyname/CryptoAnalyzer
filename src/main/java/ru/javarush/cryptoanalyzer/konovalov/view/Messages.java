@@ -21,11 +21,12 @@ public interface Messages {
                     {Action.BRUTEFORCE},
                     {"Enter source (full path OR only filename OR Enter for encrypted.txt) :", "encrypted.txt"},
                     {"Enter destination (full path OR only filename OR Enter for bruteforce.txt) :", "bruteforce.txt"},
+                    {"Enter vocabulary (full path OR only filename OR Enter for vocabulary.txt) :", "vocabulary.txt"}
             },
             {
                     {Action.ANALYZE},
                     {"Enter source (full path OR only filename OR Enter for encrypted.txt) :", "encrypted.txt"},
-                    {"Enter dictionary  (full path OR only filename OR Enter for dictionary.txt) :", "dictionary.txt"},
+                    {"Enter work by the same author  (full path OR only filename OR Enter for dictionary.txt) :", "dictionary.txt"},
                     {"Enter destination (full path OR only filename OR Enter for analyzed.txt) :", "analyzed.txt"},
             },
             {

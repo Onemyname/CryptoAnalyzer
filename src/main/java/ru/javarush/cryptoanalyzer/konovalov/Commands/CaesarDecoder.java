@@ -1,11 +1,17 @@
 package ru.javarush.cryptoanalyzer.konovalov.Commands;
 
 import ru.javarush.cryptoanalyzer.konovalov.entity.Result;
-import ru.javarush.cryptoanalyzer.konovalov.entity.ResultCode;
 
-public class CaesarDecoder implements  Action{
+public class CaesarDecoder implements CaesarAction {
+
     @Override
     public Result execute(String[] parameters) {
-        return new Result(ResultCode.OK, "all right");
+        String encryptedText = parameters[0];
+        String decryptedText = parameters[1];
+        int key = Integer.parseInt(parameters[2]);
+
+        return applyCipherKey(encryptedText,decryptedText,key*(-1));
+
     }
+
 }

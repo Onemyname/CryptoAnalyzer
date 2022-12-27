@@ -1,12 +1,16 @@
-
-//public class StatCharacterAnalyzer {
+//package ru.javarush.cryptoanalyzer.konovalov.Commands;
 //
+//import ru.javarush.cryptoanalyzer.konovalov.Commands.Action;
+//
+//import java.util.HashMap;
+//
+//public interface AnalyzeAction extends Action {
 //    public static int getTotalChars() {
 //        return totalChars;
 //    }
 //
 //    public static void setTotalChars(int totalChars) {
-//        StatCharacterAnalyzer.totalChars = totalChars;
+//        this.totalChars = totalChars;
 //    }
 //
 //    private static int totalChars;
@@ -70,7 +74,7 @@
 //        return compareMaps(sortedEncryptedMap, sortedExampleMap);
 //    }
 //
-//private static Map<Character, Double> sortMap(Map<Character, Double> unsortedMap, boolean order)
+//    private static Map<Character, Double> sortMap(Map<Character, Double> unsortedMap, boolean order)
 //    {
 //        List<Map.Entry<Character, Double>> list = new LinkedList<>(unsortedMap.entrySet());
 //
