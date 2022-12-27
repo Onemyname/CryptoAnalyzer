@@ -10,24 +10,24 @@ Statistical Analysis Decoder {3, encryptedFile.txt, resultFile.txt,example.txt }
 Exit {4}
  */
 
-import ru.javarush.cryptoanalyzer.konovalov.app.Application;
 import ru.javarush.cryptoanalyzer.konovalov.controller.MainController;
+import ru.javarush.cryptoanalyzer.konovalov.view.ConsoleApp;
+import ru.javarush.cryptoanalyzer.konovalov.view.Menu;
 
-public class Runner {
+import java.util.Scanner;
+
+public class ConsoleRunner {
     public static void main(String[] args) {
 
+        Scanner input = new Scanner(System.in);
+
+        Menu menu = new Menu(input);
+
         MainController mainController = new MainController();
-        Application application = new Application(mainController);
 
-        //Registering the user name
-        application.startVerification();
+        ConsoleApp consoleApp = new ConsoleApp(mainController, menu);
 
-        if (args.length == 0) {
-            //Requests data from user for run program
-            String[] parameters = application.parseParameters();
-            application.runProgramCryptAnalyzer(parameters);
-        } else {
-            application.runProgramCryptAnalyzer(args);
-        }
+        consoleApp.run(args);
+
     }
 }
