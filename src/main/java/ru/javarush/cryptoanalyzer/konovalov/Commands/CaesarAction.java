@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.HashMap;
 
-import static ru.javarush.cryptoanalyzer.konovalov.data.Alphabet.getAlphabetLength;
-import static ru.javarush.cryptoanalyzer.konovalov.data.Alphabet.getAlphabet;
+import static ru.javarush.cryptoanalyzer.konovalov.data.Alphabet.*;
+
 
 import java.nio.file.Path;
 
