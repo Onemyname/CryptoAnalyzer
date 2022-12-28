@@ -12,7 +12,7 @@ public class Alphabet {
 
     static char[] CRYPT_ALPHABET_ARRAY = ALL_ALPHABET.toCharArray();
 
-    static List<Character> getAlphabetList() {
+    public static List<Character> getAlphabetList() {
         return alphabetList;
     }
 
