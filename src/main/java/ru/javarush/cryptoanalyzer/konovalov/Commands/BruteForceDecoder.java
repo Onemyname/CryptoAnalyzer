@@ -32,7 +32,7 @@ public class BruteForceDecoder implements Action {
     }
 
 
-    String[] readFile(String file) {
+    private String[] readFile(String file) {
         Path source = PathBuilder.getPath(file);
         StringBuilder sb = new StringBuilder();
         String currentLine;
@@ -43,7 +43,11 @@ public class BruteForceDecoder implements Action {
                 sb.append("\n").append(currentLine);
             }
 
-        } catch (IOException e) {
+        }
+        catch (NullPointerException e){
+            throw new AppException(Constants.EMPTY_FILE+ e.getMessage(),e);
+        }
+        catch (IOException e) {
             throw new AppException(Constants.INCORRECT_FILE + e.getMessage(), e);
         }
 
@@ -51,7 +55,7 @@ public class BruteForceDecoder implements Action {
     }
 
 
-    void bruteForceLine(String[] encryptedLine, String[] exampleLine, String resultFile) {
+    private void bruteForceLine(String[] encryptedLine, String[] exampleLine, String resultFile) {
         List<String> exampleArrayList = new ArrayList<>(Arrays.asList(exampleLine));
         HashMap<Character, Character> map = new HashMap<>(getAlphabetLength());
         List<StringBuilder> toCheck;
@@ -96,7 +100,7 @@ public class BruteForceDecoder implements Action {
         }
     }
 
-    static List<StringBuilder> decodeLine(String[] encryptedLinesArray, HashMap<Character, Character> map) {
+    private List<StringBuilder> decodeLine(String[] encryptedLinesArray, HashMap<Character, Character> map) {
         StringBuilder newWord = new StringBuilder();
         List<StringBuilder> encodedLine = new ArrayList<>();
         Character newSymbol;
@@ -121,7 +125,7 @@ public class BruteForceDecoder implements Action {
         return encodedLine;
     }
 
-    static void writeResult(String resultFile, List<String> toCheck) {
+    private void writeResult(String resultFile, List<String> toCheck) {
         Path target = PathBuilder.getPath(resultFile);
 
         try (BufferedWriter writer = Files.newBufferedWriter(target)) {

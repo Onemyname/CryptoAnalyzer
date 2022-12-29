@@ -12,9 +12,7 @@ public class Alphabet {
 
     static char[] CRYPT_ALPHABET_ARRAY = ALL_ALPHABET.toCharArray();
 
-    public static List<Character> getAlphabetList() {
-        return alphabetList;
-    }
+    public static List<Character> getAlphabetList() {return alphabetList;}
 
     static List<Character> alphabetList = ENGLISH_LETTERS.toLowerCase().chars().mapToObj(c -> (char) c).toList();
 

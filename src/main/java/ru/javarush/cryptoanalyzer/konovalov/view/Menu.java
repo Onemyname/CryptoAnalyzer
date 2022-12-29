@@ -13,15 +13,17 @@ public class Menu {
 
     public String[] getArgs() {
         int mode = getMode(SCANNER);
-        String [] args = new String[QUESTIONS[mode].length];
+        String[] args = new String[QUESTIONS[mode].length];
         args[0] = QUESTIONS[mode][0][0];
+
         for (int i = 1; i < args.length; i++) {
             String quest = QUESTIONS[mode][i][0];
             System.out.println(quest);
             String answer = SCANNER.nextLine();
             args[i] = "".equals(answer.trim()) ? QUESTIONS[mode][i][1] : answer;
         }
-            return args;
+
+        return args;
     }
 
     private int getMode(Scanner scanner) {
@@ -42,8 +44,7 @@ public class Menu {
                 }
             };
         } while (mode < 0);
+
         return mode;
-
-
     }
 }

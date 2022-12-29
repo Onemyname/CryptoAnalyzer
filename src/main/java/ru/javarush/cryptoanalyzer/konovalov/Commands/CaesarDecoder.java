@@ -10,7 +10,7 @@ public class CaesarDecoder implements CaesarAction {
         String decryptedText = parameters[1];
         int key = Integer.parseInt(parameters[2]);
 
-        return applyCipherKey(encryptedText,decryptedText,key*(-1));
+        return applyCipherKey(encryptedText, decryptedText, key * (-1));
 
     }
 

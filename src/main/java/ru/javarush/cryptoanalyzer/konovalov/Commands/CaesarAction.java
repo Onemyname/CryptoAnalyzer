@@ -29,7 +29,7 @@ public interface CaesarAction extends Action {
     }
 
 
-    default HashMap<Character, Character> createCharPairs(int key) {
+    private HashMap<Character, Character> createCharPairs(int key) {
 
         HashMap<Character, Character> map = new HashMap<>(getAlphabetLength());
 
@@ -53,7 +53,7 @@ public interface CaesarAction extends Action {
     }
 
 
-    default void doCaesarCiphering(String mainText, String resultText, HashMap<Character, Character> cryptMap) {
+    private void doCaesarCiphering(String mainText, String resultText, HashMap<Character, Character> cryptMap) {
         Path source = PathBuilder.getPath(mainText);
         Path target = PathBuilder.getPath(resultText);
 
@@ -72,12 +72,16 @@ public interface CaesarAction extends Action {
                     writer.append('\n');
                 }
             }
-        } catch (IOException e) {
+        }
+        catch (NullPointerException e){
+            throw new AppException(Constants.EMPTY_FILE+ e.getMessage(),e);
+        }
+        catch (IOException  e) {
             throw new AppException(Constants.INCORRECT_FILE + e.getMessage(), e);
         }
     }
 
-    static String cipherLine(String line, HashMap<Character, Character> cryptMap) {
+    private String cipherLine(String line, HashMap<Character, Character> cryptMap) {
         char newSymbol;
         StringBuilder newLine = new StringBuilder();
 

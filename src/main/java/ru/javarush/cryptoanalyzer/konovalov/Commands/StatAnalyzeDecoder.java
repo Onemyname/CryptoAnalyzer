@@ -1,7 +1,9 @@
 package ru.javarush.cryptoanalyzer.konovalov.Commands;
 
+import ru.javarush.cryptoanalyzer.konovalov.data.Constants;
 import ru.javarush.cryptoanalyzer.konovalov.entity.Result;
 import ru.javarush.cryptoanalyzer.konovalov.entity.ResultCode;
+import ru.javarush.cryptoanalyzer.konovalov.exception.AppException;
 import ru.javarush.cryptoanalyzer.konovalov.util.PathBuilder;
 
 import java.io.BufferedReader;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class StatAnalyzeDecoder extends AnalyzeService implements Action {
+public class StatAnalyzeDecoder extends AnalyzeHelper implements Action {
 
     private static HashMap<Character, Character> charPairs;
 
@@ -31,7 +33,7 @@ public class StatAnalyzeDecoder extends AnalyzeService implements Action {
     }
 
 
-    private static void decodeEncryptedText(String encryptedText, String resultText) {
+    private void decodeEncryptedText(String encryptedText, String resultText) {
 
         Path source = PathBuilder.getPath(encryptedText);
         Path target = PathBuilder.getPath(resultText);
@@ -48,12 +50,14 @@ public class StatAnalyzeDecoder extends AnalyzeService implements Action {
                 currentLine = reader.readLine() != null ? reader.readLine().toLowerCase() : null;
             }
 
+        } catch (NullPointerException e) {
+            throw new AppException(Constants.EMPTY_FILE + e.getMessage(), e);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private static String decodeLine(String line) {
+    private String decodeLine(String line) {
 
         String[] linesArray = line.split(" ");
 

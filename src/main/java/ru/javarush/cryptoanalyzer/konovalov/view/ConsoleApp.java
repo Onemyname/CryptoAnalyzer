@@ -5,8 +5,8 @@ import java.util.Arrays;
 
 import ru.javarush.cryptoanalyzer.konovalov.controller.MainController;
 import ru.javarush.cryptoanalyzer.konovalov.entity.*;
-import static ru.javarush.cryptoanalyzer.konovalov.view.Messages.*;
 
+import static ru.javarush.cryptoanalyzer.konovalov.view.Messages.*;
 
 
 public class ConsoleApp {
@@ -33,9 +33,11 @@ public class ConsoleApp {
         }
         while (result.RESULT_CODE == ResultCode.ERROR);
     }
+
     private Result getResult(String[] args) {
         String action = args[0];
         String[] parameters = Arrays.copyOfRange(args, 1, args.length);
+
         return mainController.doAction(action, parameters);
     }
 

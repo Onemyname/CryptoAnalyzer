@@ -13,15 +13,15 @@ import java.util.stream.Collectors;
 
 import static ru.javarush.cryptoanalyzer.konovalov.data.Alphabet.getAlphabetList;
 
-public abstract class AnalyzeService{
+public abstract class AnalyzeHelper {
 
-    private static int totalChars;
-    private static int getTotalChars() {
+    private int totalChars;
+    private int getTotalChars() {
         return totalChars;
     }
 
-    private static void setTotalChars(int totalChars) {
-        AnalyzeService.totalChars = totalChars;
+    private  void setTotalChars(int totalChars) {
+        this.totalChars = totalChars;
     }
 
     public HashMap<Character, Character> createPairsForSwap(String encryptedText, String exampleText) {
@@ -56,7 +56,7 @@ public abstract class AnalyzeService{
         return temp;
     }
 
-    private static void analyzeLine(String line, HashMap<Character, Double> map) {
+    private void analyzeLine(String line, HashMap<Character, Double> map) {
 
         String[] linesArray = line.split(" ");
 
@@ -77,7 +77,7 @@ public abstract class AnalyzeService{
         }
     }
 
-    private static HashMap<Character, Character> createSwapMap(HashMap<Character, Double> encryptedMap, HashMap<Character, Double> exampleMap) {
+    private HashMap<Character, Character> createSwapMap(HashMap<Character, Double> encryptedMap, HashMap<Character, Double> exampleMap) {
 
         Map<Character, Double> sortedEncryptedMap = sortMap(encryptedMap, false);
         Map<Character, Double> sortedExampleMap = sortMap(exampleMap, false);
@@ -85,7 +85,7 @@ public abstract class AnalyzeService{
         return compareMaps(sortedEncryptedMap, sortedExampleMap);
     }
 
-    private static Map<Character, Double> sortMap(Map<Character, Double> unsortedMap, boolean order)
+    private Map<Character, Double> sortMap(Map<Character, Double> unsortedMap, boolean order)
     {
         List<Map.Entry<Character, Double>> list = new LinkedList<>(unsortedMap.entrySet());
 
@@ -99,7 +99,7 @@ public abstract class AnalyzeService{
         return list.stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> b, LinkedHashMap::new));
 
     }
-    private static HashMap<Character, Character> compareMaps(Map<Character, Double> sortedEncryptedMap,
+    private HashMap<Character, Character> compareMaps(Map<Character, Double> sortedEncryptedMap,
                                                              Map<Character, Double> sortedExampleMap) {
 
         HashMap<Character, Character> resultMap = new HashMap<>();

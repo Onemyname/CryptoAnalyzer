@@ -1,8 +1,7 @@
 package ru.javarush.cryptoanalyzer.konovalov.controller;
 
 import ru.javarush.cryptoanalyzer.konovalov.Commands.Action;
-import ru.javarush.cryptoanalyzer.konovalov.entity.Result;
-import ru.javarush.cryptoanalyzer.konovalov.entity.ResultCode;
+import ru.javarush.cryptoanalyzer.konovalov.entity.*;
 import ru.javarush.cryptoanalyzer.konovalov.exception.AppException;
 
 public class MainController {

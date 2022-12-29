@@ -1,13 +1,12 @@
 package ru.javarush.cryptoanalyzer.konovalov.view;
 
 import ru.javarush.cryptoanalyzer.konovalov.Commands.Action;
-import ru.javarush.cryptoanalyzer.konovalov.data.Constants;
 
 public interface Messages {
     String[][][] QUESTIONS = new String[][][]{
             {
                     {Action.ENCODE},
-                    {"Enter source (full path OR only filename OR Enter for text.txt) :", "text.txt"},
+                    {"Enter source (full path OR only filename OR Enter for hobbit.txt) :", "hobbit.txt"},
                     {"Enter destination (full path OR only filename OR Enter for encrypted.txt) :", "encrypted.txt"},
                     {"Enter key (int number OR Enter for key = 1) :", "1"},
             },
@@ -26,7 +25,7 @@ public interface Messages {
             {
                     {Action.ANALYZE},
                     {"Enter source (full path OR only filename OR Enter for encrypted.txt) :", "encrypted.txt"},
-                    {"Enter work by the same author  (full path OR only filename OR Enter for dictionary.txt) :", "dictionary.txt"},
+                    {"Enter work by the same author  (full path OR only filename OR Enter for dictionary.txt) :", "lordrings.txt"},
                     {"Enter destination (full path OR only filename OR Enter for analyzed.txt) :", "analyzed.txt"},
             },
             {
@@ -45,11 +44,12 @@ public interface Messages {
     String OK_FORMAT = ANSI_GREEN + """
             Operation complete
             Result: %s
-            """+ ANSI_RESET;
+            """ + ANSI_RESET;
     String ERROR_FORMAT = ANSI_PURPLE + """
             Operation not completed. Error.
             Message: %s
-            """+ ANSI_RESET;;
+            """ + ANSI_RESET;
+    ;
 
 
     String MESSAGE_SELECT_MODE = LINE +
