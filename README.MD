@@ -65,11 +65,11 @@ cd "path of project"
 ```
 2. Compile the program
  ```
-javac -Runner.java
+javac СonsoleRunner.java
 ``` 
 3. Run the program
 ```
-java -Runner.java
+java ConsoleRunner
 ```  
 3. Follow the steps on the included User Manual in the repository.
 
