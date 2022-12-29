@@ -1,57 +1,62 @@
-package ru.javarush.cryptoanalyzer.konovalov.strategy.statisticalanalyze;
+package ru.javarush.cryptoanalyzer.konovalov.Commands;
+
+import ru.javarush.cryptoanalyzer.konovalov.data.Constants;
+import ru.javarush.cryptoanalyzer.konovalov.exception.AppException;
+import ru.javarush.cryptoanalyzer.konovalov.util.PathBuilder;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static ru.javarush.cryptoanalyzer.konovalov.data.CryptAlphabetArray.getAlphabetList;
-import static ru.javarush.cryptoanalyzer.konovalov.io.Reader.getReader;
-import static ru.javarush.cryptoanalyzer.konovalov.util.PathFinder.getRoot;
+import static ru.javarush.cryptoanalyzer.konovalov.data.Alphabet.getAlphabetList;
 
-public class StatCharacterAnalyzer {
+public abstract class AnalyzeHelper {
 
-    public static int getTotalChars() {
+    private int totalChars;
+    private int getTotalChars() {
         return totalChars;
     }
 
-    public static void setTotalChars(int totalChars) {
-        StatCharacterAnalyzer.totalChars = totalChars;
+    private  void setTotalChars(int totalChars) {
+        this.totalChars = totalChars;
     }
 
-    private static int totalChars;
-
-    public static HashMap<Character, Character> getMapForDecodeEncryptedText(String encryptedText, String exampleText) {
+    public HashMap<Character, Character> createPairsForSwap(String encryptedText, String exampleText) {
 
         HashMap<Character, Double> encryptedCharsPercentage = getCharsPercentage(encryptedText);
         HashMap<Character, Double> exampleCharsPercentage = getCharsPercentage(exampleText);
 
-        return createMapForDecodeEncryptedText(encryptedCharsPercentage,
+        return createSwapMap(encryptedCharsPercentage,
                 exampleCharsPercentage);
     }
 
-    private static HashMap<Character, Double> getCharsPercentage(String filename) {
+    private HashMap<Character, Double> getCharsPercentage(String fileName) {
         setTotalChars(0);
-        HashMap<Character, Double> map = new HashMap<>();
 
-        try (BufferedReader reader = getReader(getRoot() + filename)) {
+        HashMap<Character, Double> temp = new HashMap<>();
+        Path source = PathBuilder.getPath(fileName);
+
+        try (BufferedReader reader = Files.newBufferedReader(source)) {
             String lowerCaseLine = reader.readLine().toLowerCase();
             while (lowerCaseLine != null) {
-                analyzeLine(lowerCaseLine, map);
+                analyzeLine(lowerCaseLine, temp);
                 String currentLine = reader.readLine();
                 lowerCaseLine = currentLine !=null? currentLine.toLowerCase() : null;
             }
-            for (Map.Entry<Character, Double> entry : map.entrySet()) {
+            for (Map.Entry<Character, Double> entry : temp.entrySet()) {
                 entry.setValue(entry.getValue() / getTotalChars());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new AppException(Constants.INCORRECT_FILE + e.getMessage(), e);
         }
 
-        return map;
+        return temp;
     }
 
-    private static void analyzeLine(String line, HashMap<Character, Double> map) {
+    private void analyzeLine(String line, HashMap<Character, Double> map) {
 
         String[] linesArray = line.split(" ");
 
@@ -72,7 +77,7 @@ public class StatCharacterAnalyzer {
         }
     }
 
-    private static HashMap<Character, Character> createMapForDecodeEncryptedText(HashMap<Character, Double> encryptedMap, HashMap<Character, Double> exampleMap) {
+    private HashMap<Character, Character> createSwapMap(HashMap<Character, Double> encryptedMap, HashMap<Character, Double> exampleMap) {
 
         Map<Character, Double> sortedEncryptedMap = sortMap(encryptedMap, false);
         Map<Character, Double> sortedExampleMap = sortMap(exampleMap, false);
@@ -80,7 +85,7 @@ public class StatCharacterAnalyzer {
         return compareMaps(sortedEncryptedMap, sortedExampleMap);
     }
 
-private static Map<Character, Double> sortMap(Map<Character, Double> unsortedMap, boolean order)
+    private Map<Character, Double> sortMap(Map<Character, Double> unsortedMap, boolean order)
     {
         List<Map.Entry<Character, Double>> list = new LinkedList<>(unsortedMap.entrySet());
 
@@ -94,7 +99,7 @@ private static Map<Character, Double> sortMap(Map<Character, Double> unsortedMap
         return list.stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (a, b) -> b, LinkedHashMap::new));
 
     }
-    private static HashMap<Character, Character> compareMaps(Map<Character, Double> sortedEncryptedMap,
+    private HashMap<Character, Character> compareMaps(Map<Character, Double> sortedEncryptedMap,
                                                              Map<Character, Double> sortedExampleMap) {
 
         HashMap<Character, Character> resultMap = new HashMap<>();
