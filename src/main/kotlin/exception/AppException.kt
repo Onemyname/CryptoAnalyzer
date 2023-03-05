@@ -1,18 +1,10 @@
 package exception
 
 class AppException : RuntimeException {
-    private val reason: String
-    constructor(reason: String){
-       this.reason = reason
-    }
+    constructor(message: String): super(message)
+    constructor(message: String, cause: Throwable): super(message, cause)
 
-    constructor(reason: String,  cause: Throwable){
-        this.reason = reason
-        // TODO:     super(cause)
-    }
-
-
-    fun getReason(): String{
-        return  this.reason
+    fun getMessaage(): String{
+        return this.message ?: "Unknown reason"
     }
 }

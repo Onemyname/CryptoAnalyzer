@@ -10,5 +10,5 @@ fun main(args: Array<String>) {
     val mainController = MainController()
     val consoleApp = ConsoleApp(mainController, menu)
     consoleApp.run(args)
-
 }
+

@@ -1,16 +1,20 @@
 package data
 
 import java.util.*
-import java.util.stream.Stream
-import kotlin.streams.toList
+import java.util.stream.Collectors
+
 
 var ENGLISH_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 var ALL_ALPHABET = ENGLISH_LETTERS.lowercase(Locale.getDefault())
 var CRYPT_ALPHABET_ARRAY = ALL_ALPHABET.toCharArray()
-var alphabetList = ENGLISH_LETTERS.lowercase(Locale.getDefault()).chars().mapToObj { c: Int -> c.toChar() }
+var alphabetList = ENGLISH_LETTERS
+    .lowercase(Locale.getDefault())
+    .chars()
+    .mapToObj(Int::toChar)
+    .collect(Collectors.toList())
 
 fun getAlphabetList(): List<Char> {
-    return alphabetList.toList()
+    return alphabetList
 }
 fun getAlphabet(): CharArray {
     return CRYPT_ALPHABET_ARRAY
